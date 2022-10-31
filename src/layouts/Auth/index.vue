@@ -139,7 +139,7 @@ export default {
     padding: 15px 0;
   }
   .auth-header-logo {
-    height: 39px;
+    height: 49px;
   }
 }
 .content {

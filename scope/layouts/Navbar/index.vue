@@ -449,8 +449,8 @@ export default {
 .header-logo {
   line-height: 1;
   img {
-    width: 30px;
-    border-radius: 50%;
+    width: 55px;
+    border-radius: 5%;
   }
 }
 .header-title {
