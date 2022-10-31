@@ -8,7 +8,7 @@ export default {
   },
   server: {
     success: ['running'],
-    info: ['ready', 'deallocated', 'unknown', 'suspend', 'converted'],
+    info: ['ready', 'deallocated', 'unknown', 'suspend', 'converted', 'stopped'],
     // danger: [new RegExp('fail')] // 这条会在 base组件 中默认存在
   },
   serversshable: {
@@ -135,7 +135,7 @@ export default {
     info: ['unknown', 'unavailable'],
   },
   eip: {
-    success: ['ready'],
+    success: ['ready', 'running'],
     danger: ['allocate_fail', 'deallocate_fail', 'associate_fail', 'dissociate_fail'],
     info: ['unknown'],
   },
@@ -515,5 +515,15 @@ export default {
   },
   tablestore: {
     success: ['running'],
+  },
+  modelarts: {
+    success: ['running'],
+  },
+  remotefile: {
+    success: ['running'],
+  },
+  disk_is_ssd: {
+    success: [true],
+    info: [false],
   },
 }

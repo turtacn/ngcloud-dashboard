@@ -4,13 +4,48 @@
       <div>
         <h2 :style="{ color: getI18nColorVal(companyInfo, 'login_page_slogan') }">{{ getI18nVal(companyInfo, 'login_page_slogan') || $t('login.desc1') }}</h2>
         <h4 :style="{ color: getI18nColorVal(companyInfo, 'login_page_sub_slogan') }">{{ getI18nVal(companyInfo, 'login_page_sub_slogan') || $t('login.desc2') }}</h4>
-      </div>
+        <ul>
+          <li>简单易用，多角色统一的用户界面</li>
+          <li>共建安全，行业唯一的产品和服务</li>
+          <li>可融合可分离架构</li>
+          <li>融合之上</li>
+          <ul>
+            <li>高性能 . 低成本</li>
+            <li>存算融合 . 存算分离</li>
+            <li>可私有 . 可托管 . 可分布</li>
+            <li>虚机 . 容器 . 裸金属</li>
+            <li>在线 . 离线</li>
+            <li>信创 . 非信创</li>
+            <li>对象 . 块 . 文件</li>
+            <li>社区版 . 企业版</li>
+            <li>CPU . GPU . DPU </li>
+            <li>业务XAAS化接入</li>
+          </ul>
+          <li>数字化到数智化</li>
+          <ul>
+            <li>AIOps</li>
+            <li>计量与推荐</li>
+            <li>全面SLI . SLO . SLA</li>
+            <li>态势感知</li>
+          </ul>    
+        </ul>  
+     </div>
     </div>
     <div class="login-index-right d-flex flex-column shadow-lg bg-white rounded">
       <!-- login form -->
       <div class="flex-fill position-relative">
         <div class="login-content-wrap h-100 w-100" style="overflow-x:hidden">
-          <h4 class="text-center">{{ title }}</h4>
+          <div class="login-mode-group d-flex">
+             <a class="login-mode login-mode-account"
+              :class="{ 'active': loginMode === 'account' }"
+              href="javascript:;"
+              @click="onSwitchLoginMode('account')">{{ title }}</a>
+             <a v-if="isMobleCodeAuthEnabled"
+              class="login-mode login-mode-mobile"
+              :class="{ 'active': loginMode === 'mobile' }"
+              href="javascript:;"
+              @click="onSwitchLoginMode('mobile')">{{ $t('auth.mobile') }}</a>
+            </div>
           <transition-page>
             <router-view />
           </transition-page>
@@ -25,13 +60,17 @@ import * as R from 'ramda'
 import { mapGetters, mapState } from 'vuex'
 import { getLoginDomain } from '@/utils/common/cookie'
 import { getI18nVal, getI18nColorVal } from '@/utils/i18n'
+import { getLoginModeInStorage } from '@/utils/auth'
 
 export default {
   name: 'AccountIndex',
   data () {
+    const { mode } = getLoginModeInStorage() || {}
+
     return {
       prevHeight: 0,
       regionsLoading: false,
+      loginMode: mode || 'account',
     }
   },
   computed: {
@@ -44,6 +83,9 @@ export default {
     isForgetLoginUser () {
       return this.regions.is_forget_login_user
     },
+    isMobleCodeAuthEnabled () {
+      return this.regions.enable_mobile_code_auth
+    },
     title () {
       if (this.$route.name === 'Auth') {
         return this.$t('auth.login')
@@ -51,7 +93,7 @@ export default {
       if (this.$route.name === 'LoginChooser') {
         return this.$t('auth.chooser')
       }
-      return '-'
+      return this.$t('auth.login')
     },
     loginDomain () {
       if (this.$route.query.domain) {
@@ -123,7 +165,6 @@ export default {
     } catch (error) {
       this.regionsLoading = true
     }
-    const data = Object.entries(this.loggedUsers)
     // 查看SSO登录跳转回来后的query信息，是否有error
     const { query, path } = this.$route
     const { result, error_class } = query
@@ -142,19 +183,7 @@ export default {
       })
       return false
     }
-    // 判断是否禁用用户名回填
-    // 如果包含历史账号，则显示历史账号
-    if (!R.isEmpty(data) && !this.isForgetLoginUser) {
-      this.$router.replace({
-        path: '/auth/login/chooser',
-        query,
-      })
-    } else {
-      this.$router.replace({
-        path: '/auth/login',
-        query,
-      })
-    }
+    this.switchLoginMode()
   },
   methods: {
     gethost (str) {
@@ -168,6 +197,34 @@ export default {
     },
     getI18nVal,
     getI18nColorVal,
+    switchLoginMode () {
+      const { query } = this.$route
+      // 判断是否禁用用户名回填
+      // 如果包含历史账号，则显示历史账号
+      if (this.loginMode === 'account') {
+        const data = Object.entries(this.loggedUsers)
+        if (!R.isEmpty(data) && !this.isForgetLoginUser) {
+          this.$router.replace({
+            path: '/auth/login/chooser',
+            query,
+          })
+        } else {
+          this.$router.replace({
+            path: '/auth/login',
+            query,
+          })
+        }
+      } else {
+        this.$router.replace({
+          path: '/auth/login/mobile',
+          query,
+        })
+      }
+    },
+    onSwitchLoginMode (mode) {
+      this.loginMode = mode
+      this.switchLoginMode()
+    },
   },
 }
 </script>
@@ -224,6 +281,29 @@ export default {
   overflow: hidden;
   img {
     height: 60%;
+  }
+}
+
+.login-mode-group {
+  padding-bottom: 30px;
+
+  .login-mode {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+    color: rgb(24, 24, 24);
+    vertical-align: middle;
+    cursor: pointer;
+    &.active {
+      border-bottom: 2px solid #1890ff;
+      color: #1890ff;
+    }
+  }
+  .login-mode-mobile {
+    margin-left: 34px;
   }
 }
 </style>

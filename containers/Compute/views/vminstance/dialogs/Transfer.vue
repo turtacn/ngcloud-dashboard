@@ -6,13 +6,13 @@
       <dialog-table :data="params.data" :columns="columns" />
       <a-form :form="form.fc" hideRequiredMark v-bind="formItemLayout">
         <!-- 强制迁移 -->
-        <a-form-item :label="$t('compute.text_1261')" v-if="isSingle" :extra="$t('compute.text_1262')">
+        <!-- <a-form-item :label="$t('compute.text_1261')" v-if="isSingle" :extra="$t('compute.text_1262')">
           <a-switch
             :checkedChildren="$t('compute.text_115')"
             :unCheckedChildren="$t('compute.text_116')"
             v-decorator="decorators.rescue_mode"
             @change="rescueModeChangeHandle" />
-        </a-form-item>
+        </a-form-item> -->
         <!-- 自动启动 -->
         <a-form-item :label="$t('compute.text_494')" v-if="isSingle && firstData.status === 'ready'" :extra="$t('compute.text_1263')">
           <a-switch
@@ -41,6 +41,15 @@
             :dialog-params="{ title: $t('compute.text_111'), width: 1060 }"
             @change="hostChangeHandle" />
         </a-form-item>
+        <template v-if="isAllRunning">
+          <a-form-item :label="$t('compute.vminstance.transfer.max_brand_width')">
+            <migration-bandwidth :decorators="decorators" :form="form" />
+          </a-form-item>
+          <a-form-item :label="$t('compute.vminstance.transfer.quickly_finish')"
+            :extra="$t('compute.vminstance.transfer.quickly_finish.extra')">
+            <a-checkbox v-decorator="decorators.quickly_finish" />
+          </a-form-item>
+        </template>
       </a-form>
     </div>
     <div slot="footer">
@@ -55,19 +64,28 @@ import { mapGetters } from 'vuex'
 import DialogMixin from '@/mixins/dialog'
 import WindowsMixin from '@/mixins/windows'
 import ListSelect from '@/sections/ListSelect'
+import MigrationBandwidth from '@Compute/sections/MigrationBandwidth'
 import ResourceProps from '../mixins/resourceProps'
 
 export default {
   name: 'VmTransferDialog',
   components: {
     ListSelect,
+    MigrationBandwidth,
   },
   mixins: [DialogMixin, WindowsMixin, ResourceProps],
   data () {
     return {
       loading: false,
       form: {
-        fc: this.$form.createForm(this),
+        fc: this.$form.createForm(this, {
+          onValuesChange: (props, values) => {
+            Object.keys(values).forEach((key) => {
+              this.form.fd[key] = values[key]
+            })
+          },
+        }),
+        fd: {},
       },
       forcastData: null,
       hosts: [],
@@ -102,6 +120,27 @@ export default {
             valuePropName: 'checked',
           },
         ],
+        brandWidth: [
+          'brandWidth',
+          {
+            initialValue: '-1',
+          },
+        ],
+        customBrandWidth: [
+          'customBrandWidth',
+          {
+            rules: [
+              { required: true, message: this.$t('compute.vminstance.transfer.max_brand_width.required'), trigger: 'change' },
+            ],
+          },
+        ],
+        quickly_finish: [
+          'quickly_finish',
+          {
+            initialValue: false,
+            valuePropName: 'checked',
+          },
+        ],
       },
       formItemLayout: {
         wrapperCol: {
@@ -123,13 +162,15 @@ export default {
     },
     hostsParams () {
       let hostType = 'hypervisor'
+      const hostIds = this.forcastData?.filtered_candidates?.map(v => v.id) || []
+
       if (this.firstData.hypervisor !== 'kvm') {
         hostType = this.firstData.hypervisor
       }
       const ret = {
         scope: this.scope,
         host_type: hostType,
-        limit: 20,
+        limit: 10,
         enabled: 1,
         host_status: 'online',
         server_id_for_network: this.firstData.id,
@@ -137,6 +178,9 @@ export default {
       }
       if (this.isAdminMode && this.isSingle) {
         ret.project_domain = this.params.data[0].domain_id
+      }
+      if (hostIds && hostIds.length > 0) {
+        ret.filter = `id.notin(${hostIds.join(',')})`
       }
       return ret
     },
@@ -176,6 +220,9 @@ export default {
         return fields.indexOf(field) > -1
       })
     },
+    isAllRunning () {
+      return this.params.data.every(item => item.status === 'running')
+    },
   },
   created () {
     this.isSingle && this.queryForcastData()
@@ -197,6 +244,12 @@ export default {
         if (values.skip_cpu_check) {
           data.skip_cpu_check = true
           data.skip_kernel_check = true
+        }
+        if (values.brandwidth !== '-1') {
+          data.max_bandwidth_mb = values.brandwidth === 'custom' ? values.customBrandWidth : values.brandwidth
+        }
+        if (values.quickly_finish) {
+          data.quickly_finish = true
         }
       }
       if (values.rescue_mode) {

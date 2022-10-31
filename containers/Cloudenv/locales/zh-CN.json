@@ -377,6 +377,7 @@
   "cloudenv.text_331": "描述",
   "cloudenv.text_332": "云上用户组",
   "cloudenv.text_333": "仅Azure平台支持此操作",
+  "cloudenv.text_333_1": "仅Azure国际区云账号支持此操作",
   "cloudenv.text_334": "启用",
   "cloudenv.text_335": "禁用",
   "cloudenv.text_336": "更改{0}时若同时修改{1}，该订阅所属{2}会同步修改",
@@ -755,6 +756,7 @@
   "cloudenv.lake_of_permissions": "缺失权限",
   "cloudenv.clear_lake_of_permissions": "清空权限提示",
   "cloudenv.read_only": "只读模式",
+  "cloudenv.skip_duplicate_account_check": "跳过重复账号检查",
   "cloudenv.read_only_extra": "开启后，该云账号只会进行同步资源操作，无法进行其他任务操作，如新建、删除或修改等",
   "cloudenv.create_extrnal_project": "新建云上项目",
   "cloudenv.create_local_project": "新建本地项目",
@@ -766,5 +768,10 @@
   "cloudenv.resource_add_cnt": "资源新增",
   "cloudenv.resource_del_cnt": "资源删除",
   "cloudenv.scheduled_settings_title": "定时同步任务设置（可选）",
-  "cloudenv.range_picker_help": "支持为空，不选择代表长期有效"
+  "cloudenv.range_picker_help": "支持为空，不选择代表长期有效",
+  "cloudenv.auth_url_label": "链接地址",
+  "cloudenv.auth_url_extra": "请输入外部数据链接地址，需保证该平台与目标地址网络互通",
+  "cloudenv.aksk": "访问密钥",
+  "cloudenv.aksk.add": "新增访问密钥",
+  "cloudenv.aksk.placeholder": "请输入访问密钥信息。"
 }

@@ -644,7 +644,7 @@
       "label": "Web console session timeout",
       "desc": "After the user has no operation in the current period of time, the login information will be invalid and needs to be logged in again. Zero means detection is not turned on."
     },
-    "common$is_forget_login_user": {
+    "yunionapi$is_forget_login_user": {
       "label": "Log out and clear user information",
       "desc": "After enabled, logging out will clear the logged in user information. To log in again, you need to re-enter your user name and password."
     },
@@ -708,7 +708,7 @@
       "label": "Global Proxy",
       "desc": "If enabled, the global proxy will be used for the following scenarios: downloading configuration and rate data, downloading public images, importing image from Image market, uploading image from URL, etc."
     },
-    "websocket$force_single_session_login": {
+    "yunionapi$force_single_session_login": {
       "label": "Single session login switch",
       "desc": "After the single session login switch is turned off, the same user can log in in multiple browsers at the same time. After it is turned on, they can only log in in one browser at the same time."
     },
@@ -760,11 +760,11 @@
       "label": "Syslog WebService Password",
       "desc": "After Syslog WebService is enabled，you need to add Syslog WebService password"
     },
-    "common$enable_tls_migration": {
+    "compute$enable_tls_migration": {
       "label": "Enable TLS migration",
       "desc": "When enabled, KVM virtual machine hot migration will use TLS to encrypt data."
     },
-    "common$enable_organization": {
+    "yunionapi$enable_organization": {
       "label": "Organizational structure switch",
       "desc": "After enabling, you can customize the level to control the permissions of the project, and support filtering and viewing in the resource list."
     },
@@ -785,6 +785,10 @@
     "compute$default_admin_security_group_id": {
       "label": "Admin Security ID",
       "desc": "If set, the machine created by the local IDC will be bound to the specified management security group by default. If the previous virtual machine is not bound to any management security group, it will be bound to the security group after the next system restart. The management security group is not visible to ordinary users."
+    },
+    "yunionapi$hide_web_error_details": {
+      "label": "Error details hide switch",
+      "desc": "After opening, you can hide the detailed information of the operation, but you cannot hide it after closing it!"
     }
   },
   "user": {
@@ -823,13 +827,14 @@
   "system.steps_to_param_mailconfig": "how-to-configure-wecom-to-get-relevant-parameters",
   "system.is_config_mail_tips": "The system has not setup email notifcation channel",
   "system.google_oidc_doc": "how-to-get-google-related-parameters",
-  "system.github_oidc_doc": "how-to-get-github-related-parameters",
-  "system.azure_oidc_doc": "how-to-get-azure-ad-oauth2-related-parameters",
-  "system.azure_ad_saml_doc": "how-to-get-azure-ad-saml20-related-parameters",
-  "system.saml_doc": "how-to-get-saml-related-parameters",
-  "system.feishu_oauth2_doc": "how-to-get-lark-related-parameters",
-  "system.dingtalk_oauth2_doc": "how-to-get-dingtalk-related-parameters",
-  "system.qywechat_oauth2_doc": "how-to-get-webcom-related-parameters",
+  "system.github_oidc_doc": "github相关参数获取方式",
+  "system.azure_oidc_doc": "azure-ad-oauth2相关参数获取方式",
+  "system.azure_ad_saml_doc": "azure-ad-saml20相关参数获取方式",
+  "system.saml_doc": "通用saml相关参数获取方式",
+  "system.feishu_oauth2_doc": "飞书相关参数获取方式",
+  "system.dingtalk_oauth2_doc": "钉钉相关参数获取方式",
+  "system.qywechat_oauth2_doc": "企业微信相关参数获取方式",
+  "system.oauth2_doc": "新建OAuth2认证协议的认证源",
   "system.three_level_permission_description": "three-level-permission-description",
   "system.bill_budgets": "Budgets",
   "system.field.username": "Field of Username",
@@ -838,6 +843,42 @@
   "system.role.users": "#Users",
   "system.role.groups": "#Groups",
   "system.role.projects": "#Projects",
+  "notify.configs.sms_driver": "SMS Provider",
+  "notify.smshuawei.app_access_url": "App Access URL",
+  "notify.smshuawei.application_key.prompt": "Please input application key",
+  "notify.smshuawei.application_key.example": "eg. tubitj4Lb2un3jBCymJgEKdP0pFx",
+  "notify.smshuawei.application_key.guid": "Path: Huawei Cloud web console -> Message & SMS -> Chinese Mainland SMS -> Application Managerment -> Add Application -> Application Key",
+  "notify.smshuawei.application_secret.prompt": "Please input application secret",
+  "notify.smshuawei.application_secret.example": "eg. gFZt2MyPyeauw00joR9OBnA25MyA",
+  "notify.smshuawei.application_secret.guid": "Path: Huawei Cloud web console -> Message & SMS -> Chinese Mainland SMS -> Application Management -> Add Application -> Application Secret",
+  "notify.smshuawei.service_url.prompt": "Please input application access url",
+  "notify.smshuawei.service_url.example": "eg. https://smsapi.cn-north-4.myhuaweicloud.com",
+  "notify.smshuawei.service_url.guid": "Path: Huawei Cloud web console -> Message & SMS -> Chinese Mainland SMS -> Application Management -> Add Application -> Application Access Address",
+  "notify.smshuawei.signature.prompt": "Please input signature",
+  "notify.smshuawei.signature.example": "Usually synopsise of company name",
+  "notify.smshuawei.signature.guid": "Path: Huawei Cloud web console -> Message & SMS -> Chinese Mainland SMS -> Signature Management -> Add Singnature -> Signature",
+  "notify.smshuawei.template_id.placeholder": "Template ID",
+  "notify.smshuawei.channel_no.placeholder": "Channel Number",
+  "notify.smshuawei.template.verify_code.example": "Please input verification template ID and the corresponding verification signature channel number, e.g. template ID d7011c2d7ada43cc917e0478e40583e5 channel number 8822082908233",
+  "notify.smshuawei.template.verify_code.guid": "Huawei Cloud web console -> Message & SMS -> Chinese Mainland SMS -> Template Management -> Template ID",
+  "notify.smshuawei.template.verify_code.template": "Template: 验证码：${1}，如非本人操作，请忽略本短信！",
+  "notify.smshuawei.template.alarm_message.example": "Please input alarm template ID and the corresponding general signature channel number, e.g. template ID d7011c2d7ada43cc917e0478e40583e5 channel number 8822082908233",
+  "notify.smshuawei.template.alarm_message.guid": "Huawei Cloud web console -> Message & SMS -> Chinese Mainland SMS -> Template Management -> Template ID",
+  "notify.smshuawei.template.alarm_message.template": "Template: ${1}的${2}触发告警，请及时登录平台查看。",
+  "notify.smshuawei.template.abnormal_login.example": "Please input abnormal login template ID and the corresponding general signature channel number, e.g. template ID d7011c2d7ada43cc917e0478e40583e5 channel number 8822082908233",
+  "notify.smshuawei.template.abnormal_login.guid": "Huawei Cloud web console -> Message & SMS -> Chinese Mainland SMS -> Template Management -> Template ID",
+  "notify.smshuawei.template.abnormal_login.template": "Template: ${1}域下的账号${2}因为异常登录被锁定，请您核实情况。",
+  "notify.smshuawei.template.verify_code.en.example": "Please input verification template ID and the application channel number, e.g. ID d7011c2d7ada43cc917e0478e40583e5 channel number 8822082908233",
+  "notify.smshuawei.template.verify_code.en.guid": "Huawei Cloud web console -> Message & SMS -> International SMS -> Template Management -> Template ID",
+  "notify.smshuawei.template.verify_code.en.template": "Template: Code: ${1}, if the SMS not trigger by yourself, please ignore!",
+  "notify.smshuawei.template.alarm_message.en.example": "Please input alarm template ID and the application channel number, e.g. ID d7011c2d7ada43cc917e0478e40583e5 channel number 8822082908233",
+  "notify.smshuawei.template.alarm_message.en.guid": "Huawei Cloud web console -> Message & SMS -> International SMS -> Template Management -> Template ID",
+  "notify.smshuawei.template.alarm_message.en.template": "Template: Alarm ${1} resource ${2} raise an alarm, please login to check details.",
+  "notify.smshuawei.template.abnormal_login.en.example": "Please input abnormal login template ID and the application channel number, e.g. ID d7011c2d7ada43cc917e0478e40583e5 channel number 8822082908233",
+  "notify.smshuawei.template.abnormal_login.en.guid": "Huawei Cloud web console -> Message & SMS -> International SMS -> Template Management -> Template ID",
+  "notify.smshuawei.template.abnormal_login.en.template": "Template: Domain ${1} account ${2} was locked due to illegal login attempt.",
+  "notify.smshuawei.verify_code.prompt": "Please input verification SMS template ID",
+  "notify.smshuawei.verify_code_channel.prompt": "Please input verification SMS channel number",
   "system.management_notify_channels": "Management Notification Channels",
   "system.management_notify_channels.domain.tips": "Please select items with same domain",
   "system.notify.topic.type.automated_process": "Automated Process",
@@ -855,7 +896,7 @@
   "system.notify.name.snapshot_policy_execute": "Send message for snapshot policy to take effect",
   "system.notify.name.scheduled_task_execute": "Send message for resource timed power on/off and reboot",
   "system.notify.name.scaling_policy_execute": "Send message for scaling strategy to take effect",
-  "system.notify.name.resource_update": "Send message for resource password changes",
+  "system.notify.name.resource_update": "Send message for resource attribute changes (including password changes)",
   "system.notify.name.resource_release_due_3_day": "Send message for resource expiration 3 days in advance",
   "system.notify.name.resource_release_due_1_day": "Send message for resource expiration 1 days in advance",
   "system.notify.name.resource_release_due_n_day": "Send message for resource expiration {0} days in advance",
@@ -902,7 +943,8 @@
   "system.companyinfo.font_color": "Font Color",
   "system.companyinfo.monitor_dashboard_style": "Big Screen Types",
   "system.companyinfo.monitor_dashboard_style.overview": "Cloud Management",
-  "system.companyinfo.monitor_dashboard_style.overview_private": "Private Cloud",
+  "system.companyinfo.monitor_dashboard_style.overview_private": "Private Cloud 1",
+  "system.companyinfo.monitor_dashboard_style.overview_private2": "Private Cloud 2",
   "system.companyinfo.monitor_dashboard_style.overview_custom": "Default",
   "system.robot.shared": "The shared robot does not support this operation",
   "system.displayname_tip": "Please enter a displayname",
@@ -925,6 +967,7 @@
   "iam.system_error_notify": "System exception notification",
   "iam.user_lock_notify": "User lock notification",
   "iam.checksum_error_notify": "Integrity Checksum Failure Notification",
+  "iam.action_log_exceed_count": "Action log capcity alarm",
   "iam.security_info": "Security Information",
   "iam.manage_res": "Manage {0)",
   "iam.reset_mfa_tips": "After reset, the user needs to reset the login page, the previous information will be invalid!",

@@ -58,10 +58,10 @@
         <a-input-number v-decorator="decorators.count" @blur="countBlur" :min="1" :max="100" />
       </a-form-item>
       <a-form-item :label="$t('compute.text_1058')" class="mb-0">
-        <cpu-radio :decorator="decorators.vcpu" :options="form.fi.cpuMem.cpus || []" @change="cpuChange" />
+        <cpu-radio :decorator="decorators.vcpu" :options="form.fi.cpuMem.cpus || []" :showUnlimited="true" @change="cpuChange" />
       </a-form-item>
       <a-form-item :label="$t('compute.text_369')" class="mb-0">
-        <mem-radio :decorator="decorators.vmem" :options="form.fi.cpuMem.mems_mb || []" />
+        <mem-radio :decorator="decorators.vmem" :options="form.fi.cpuMem.mems_mb || []" :showUnlimited="true" />
       </a-form-item>
       <a-form-item :label="$t('compute.text_109')" v-if="showSku">
         <sku
@@ -239,16 +239,13 @@ export default {
       return params
     },
     showSku () {
-      if (this.form.fd.vcpu && this.form.fd.vmem) {
-        return true
-      }
-      return false
+      return true
     },
     skuParam () {
       const params = {
         limit: 0,
         postpaid_status: 'available',
-        cpu_core_count: this.form.fd.vcpu || this.decorators.vcpu[1].initialValue,
+        cpu_core_count: this.form.fd.vcpu,
         memory_size_mb: this.form.fd.vmem,
         usable: true,
         enabled: true,

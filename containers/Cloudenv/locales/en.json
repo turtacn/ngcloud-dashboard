@@ -377,6 +377,7 @@
   "cloudenv.text_331": "Description",
   "cloudenv.text_332": "User Group on the Cloud",
   "cloudenv.text_333": "Only Azure platform supports this operation",
+  "cloudenv.text_333_1": "This operation is only supported for azure international cloud accounts",
   "cloudenv.text_334": "Enable",
   "cloudenv.text_335": "Disable",
   "cloudenv.text_336": "If {1} is modified at the same time when {0} is changed, the {2} to which this subscription belongs will be modified as well",
@@ -755,6 +756,7 @@
   "cloudenv.lake_of_permissions": "Lake Of Permissions",
   "cloudenv.clear_lake_of_permissions": "Clean permisssions tip",
   "cloudenv.read_only": "read only mode",
+  "cloudenv.skip_duplicate_account_check": "skip duplicate account check",
   "cloudenv.read_only_extra": "after being enabled, the cloud account will only synchronize resources and cannot perform other tasks, such as creating, deleting or modifying.",
   "cloudenv.create_extrnal_project": "Create a cloud project",
   "cloudenv.create_local_project": "Create a local project",
@@ -766,5 +768,10 @@
   "cloudenv.resource_add_cnt": "Add",
   "cloudenv.resource_del_cnt": "Delete",
   "cloudenv.scheduled_settings_title": "Scheduled sync task settings (optional)",
-  "cloudenv.range_picker_help": "Support is empty, no selection means long-term validity"
+  "cloudenv.range_picker_help": "Support is empty, no selection means long-term validity",
+  "cloudenv.auth_url_label": "Link URL",
+  "cloudenv.auth_url_extra": "Please enter the external data link address, it is necessary to ensure that the platform is connected to the target address network",
+  "cloudenv.aksk": "Access Key",
+  "cloudenv.aksk.add": "Add access key",
+  "cloudenv.aksk.placeholder": "Please enter access key information."
 }

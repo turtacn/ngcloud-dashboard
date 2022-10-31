@@ -59,10 +59,10 @@
         <gpu :decorators="decorators.gpu" :gpu-options="gpuOptions" @change="gpuChange" />
       </a-form-item>
       <a-form-item :label="$t('compute.text_1058')" class="mb-0">
-        <cpu-radio :decorator="decorators.vcpu" :options="form.fi.cpuMem.cpus || []" @change="cpuChange" />
+        <cpu-radio :decorator="decorators.vcpu" :options="form.fi.cpuMem.cpus || []" :showUnlimited="true" @change="cpuChange" />
       </a-form-item>
       <a-form-item :label="$t('compute.text_369')" class="mb-0">
-        <mem-radio :decorator="decorators.vmem" :options="form.fi.cpuMem.mems_mb || []" />
+        <mem-radio :decorator="decorators.vmem" :options="form.fi.cpuMem.mems_mb || []" :showUnlimited="true" />
       </a-form-item>
       <a-form-item :label="$t('compute.text_109')" v-if="showSku">
         <sku
@@ -82,6 +82,9 @@
           :cacheImageParams="cacheImageParams"
           :cloudproviderParamsExtra="cloudproviderParamsExtra"
           @updateImageMsg="updateFi" />
+      </a-form-item>
+      <a-form-item v-if="isKvm && isShowAgent" :label="$t('compute.agent.label')" :extra="$t('compute.agent.extra')">
+        <a-checkbox v-decorator="decorators.deploy_telegraf">{{ $t('compute.agent.install.plugin') }}</a-checkbox>
       </a-form-item>
       <a-form-item :label="$t('compute.text_49')" class="mb-0">
         <system-disk
@@ -324,7 +327,7 @@ export default {
       return params
     },
     showSku () {
-      if (this.form.fd.hypervisor && this.form.fd.vcpu && this.form.fd.vmem) {
+      if (this.form.fd.hypervisor) {
         return true
       }
       return false
@@ -334,7 +337,7 @@ export default {
         limit: 0,
         public_cloud: false,
         postpaid_status: 'available',
-        cpu_core_count: this.form.fd.vcpu || this.decorators.vcpu[1].initialValue,
+        cpu_core_count: this.form.fd.vcpu,
         memory_size_mb: this.form.fd.vmem,
         cloudregion: _.get(this.form, 'fd.cloudregion.key'),
         provider: 'OneCloud',
@@ -581,6 +584,12 @@ export default {
     },
     enableEncryption () {
       return this.$appConfig.isPrivate
+    },
+    isShowAgent () {
+      if (this.isWindows) {
+        return !this.isArm
+      }
+      return true
     },
   },
   watch: {

@@ -639,7 +639,7 @@
       "label": "Web控制台会话超时时间",
       "desc": "当前这段时间内未检测到用户操作后，登录信息会失效，需重新登录。0代表未开启检测。"
     },
-    "common$is_forget_login_user": {
+    "yunionapi$is_forget_login_user": {
       "label": "登出清空用户信息",
       "desc": "打开后，退出登录会清空登录的用户信息。再次登录需重新输入用户名密码。"
     },
@@ -707,7 +707,7 @@
       "label": "全局代理开关",
       "desc": "如果开启，在下载套餐、下载公有云镜像列表、下载费率、镜像市场列表展示、通过URL导入镜像、拉取公共镜像列表时将使用全局代理"
     },
-    "websocket$force_single_session_login": {
+    "yunionapi$force_single_session_login": {
       "label": "单session登录开关",
       "desc": "单session登录开关关闭后，同一用户可在多个浏览器同时登录，开启后，只能在一个浏览器同时登录"
     },
@@ -759,11 +759,11 @@
       "label": "Syslog WebService密码",
       "desc": "开启Syslog WebService后，需填写Syslog WebService密码"
     },
-    "common$enable_tls_migration": {
+    "compute$enable_tls_migration": {
       "label": "启用 tls 迁移",
       "desc": "启用后，KVM私有云虚拟机热迁移时使会启用 tls 加密数据。"
     },
-    "common$enable_organization": {
+    "yunionapi$enable_organization": {
       "label": "组织架构开关",
       "desc": "开启后，可自定义层级对项目进行权限控制，同时支持在资源列表进行过滤查看。"
     },
@@ -784,6 +784,10 @@
     "compute$default_admin_security_group_id": {
       "label": "管理安全组ID",
       "desc": "若设定，此后本地idc所创建的机器默认会绑定此指定的管理安全组，若之前的虚拟机没有绑定任何管理安全组，在系统下一次重启后会绑定此安全组，此管理安全组对普通用户不可见。"
+    },
+    "yunionapi$hide_web_error_details": {
+      "label": "错误详情隐藏开关",
+      "desc": "关闭后，可以查看操作操作的详细信息，开启后无法查看！"
     }
   },
   "user": {
@@ -829,6 +833,7 @@
   "system.feishu_oauth2_doc": "飞书相关参数获取方式",
   "system.dingtalk_oauth2_doc": "钉钉相关参数获取方式",
   "system.qywechat_oauth2_doc": "企业微信相关参数获取方式",
+  "system.oauth2_doc": "新建OAuth2认证协议的认证源",
   "system.three_level_permission_description": "三级权限使用说明",
   "system.bill_budgets": "预算",
   "system.field.username": "用户名字段",
@@ -837,6 +842,42 @@
   "system.role.users": "匹配用户",
   "system.role.groups": "匹配组",
   "system.role.projects": "使用项目",
+  "notify.configs.sms_driver": "短信服务商",
+  "notify.smshuawei.app_access_url": "App接入地址",
+  "notify.smshuawei.application_key.prompt": "请输入application key",
+  "notify.smshuawei.application_key.example": "例如：tubitj4Lb2un3jBCymJgEKdP0pFx",
+  "notify.smshuawei.application_key.guid": "创建或获取路径：登录华为云控制台 -> 消息&短信 MSGSMS -> 国内短信 -> 应用管理 -> 添加应用 -> Application Key",
+  "notify.smshuawei.application_secret.prompt": "请输入application secret",
+  "notify.smshuawei.application_secret.example": "例如：gFZt2MyPyeauw00joR9OBnA25MyA",
+  "notify.smshuawei.application_secret.guid": "创建或获取路径：登录华为云控制台 -> 消息&短信 MSGSMS -> 国内短信 -> 应用管理 -> 添加应用 -> Application Secret",
+  "notify.smshuawei.service_url.prompt": "请输入App接入地址",
+  "notify.smshuawei.service_url.example": "例如：https://smsapi.cn-north-4.myhuaweicloud.com",
+  "notify.smshuawei.service_url.guid": "创建或获取路径：登录华为云控制台 -> 消息&短信 MSGSMS -> 国内短信 -> 应用管理 -> 添加应用 -> App接入地址",
+  "notify.smshuawei.signature.prompt": "请输入签名",
+  "notify.smshuawei.signature.example": "一般为公司缩写",
+  "notify.smshuawei.signature.guid": "创建或获取路径：登录华为云控制台 -> 消息&短信 MSGSMS -> 国内短信 -> 签名管理 -> 添加签名 -> 签名名称",
+  "notify.smshuawei.template_id.placeholder": "模板ID",
+  "notify.smshuawei.channel_no.placeholder": "通道号",
+  "notify.smshuawei.template.verify_code.example": "请输入验证模板ID和验证签名对应通道号，例如, 模板ID d7011c2d7ada43cc917e0478e40583e5 通道号 8822082908233",
+  "notify.smshuawei.template.verify_code.guid": "华为云控制台 -> 消息&短信 MSGSMS -> 国内短信 -> 模板管理 -> 模板ID",
+  "notify.smshuawei.template.verify_code.template": "模板内容：验证码：${1}，如非本人操作，请忽略本短信！",
+  "notify.smshuawei.template.alarm_message.example": "请输入告警模板ID和通用签名对应通道号，例如, 模板ID d7011c2d7ada43cc917e0478e40583e5 通道号 8822082908233",
+  "notify.smshuawei.template.alarm_message.guid": "华为云控制台 -> 消息&短信 MSGSMS -> 国内短信 -> 模板管理 -> 模板ID",
+  "notify.smshuawei.template.alarm_message.template": "模板内容：${1}的${2}触发告警，请及时登录平台查看。",
+  "notify.smshuawei.template.abnormal_login.example": "请输入异常登录模板ID和通用签名对应通道号，例如, 模板ID d7011c2d7ada43cc917e0478e40583e5 通道号 8822082908233",
+  "notify.smshuawei.template.abnormal_login.guid": "华为云控制台 -> 消息&短信 MSGSMS -> 国内短信 -> 模板管理 -> 模板ID",
+  "notify.smshuawei.template.abnormal_login.template": "模板内容：${1}域下的账号${2}因为异常登录被锁定，请您核实情况。",
+  "notify.smshuawei.template.verify_code.en.example": "请输入验证模板ID和应用通道号，例如, 模板ID d7011c2d7ada43cc917e0478e40583e5 通道号 8822082908233",
+  "notify.smshuawei.template.verify_code.en.guid": "华为云控制台 -> 消息&短信 MSGSMS -> 国际港澳台短信 -> 模板管理 -> 模板ID",
+  "notify.smshuawei.template.verify_code.en.template": "模板内容：Code: ${1}, if the SMS not trigger by yourself, please ignore!",
+  "notify.smshuawei.template.alarm_message.en.example": "请输入告警模板ID和应用通道号，例如, 模板ID d7011c2d7ada43cc917e0478e40583e5 通道号 8822082908233",
+  "notify.smshuawei.template.alarm_message.en.guid": "华为云控制台 -> 消息&短信 MSGSMS -> 国际港澳台短信 -> 模板管理 -> 模板ID",
+  "notify.smshuawei.template.alarm_message.en.template": "模板内容：Alarm ${1} resource ${2} raise an alarm, please login to check details.",
+  "notify.smshuawei.template.abnormal_login.en.example": "请输入异常登录模板ID和应用通道号，例如, 模板ID d7011c2d7ada43cc917e0478e40583e5 通道号 8822082908233",
+  "notify.smshuawei.template.abnormal_login.en.guid": "华为云控制台 -> 消息&短信 MSGSMS -> 国际港澳台短信 -> 模板管理 -> 模板ID",
+  "notify.smshuawei.template.abnormal_login.en.template": "模板内容：Domain ${1} account ${2} was locked due to illegal login attempt.",
+  "notify.smshuawei.verify_code.prompt": "请输入验证码模板ID",
+  "notify.smshuawei.verify_code_channel.prompt": "请输入验证短信通道号",
   "system.management_notify_channels": "管理通知渠道",
   "system.management_notify_channels.domain.tips": "请选择同一个域下的资源",
   "system.notify.topic.type.automated_process": "自动化流程",
@@ -854,7 +895,7 @@
   "system.notify.name.snapshot_policy_execute": "自动快照策略生效发送通知",
   "system.notify.name.scheduled_task_execute": "资源定时开关机、重启发送通知",
   "system.notify.name.scaling_policy_execute": "伸缩策略生效发送通知",
-  "system.notify.name.resource_update": "资源密码变更发送通知",
+  "system.notify.name.resource_update": "资源属性变更(含密码变更)发送通知",
   "system.notify.name.resource_release_due_3_day": "资源（含包年包月）到期释放前3天发送通知",
   "system.notify.name.resource_release_due_1_day": "资源（含包年包月）到期释放前1天发送通知",
   "system.notify.name.resource_release_due_n_day": "资源（含包年包月）到期释放前{0}天发送通知",
@@ -905,7 +946,8 @@
   "system.companyinfo.font_color": "字体颜色",
   "system.companyinfo.monitor_dashboard_style": "监控大屏类型",
   "system.companyinfo.monitor_dashboard_style.overview": "云管",
-  "system.companyinfo.monitor_dashboard_style.overview_private": "私有云",
+  "system.companyinfo.monitor_dashboard_style.overview_private": "私有云-1",
+  "system.companyinfo.monitor_dashboard_style.overview_private2": "私有云-2",
   "system.companyinfo.monitor_dashboard_style.overview_custom": "默认",
   "system.robot.shared": "被共享的机器人不支持该操作",
   "system.displayname_tip": "请输入显示名",
@@ -928,6 +970,7 @@
   "iam.system_error_notify": "系统异常通知",
   "iam.user_lock_notify": "用户锁定通知",
   "iam.checksum_error_notify": "完整性校验失败通知",
+  "iam.action_log_exceed_count": "操作日志容量预警通知",
   "iam.security_info": "安全消息",
   "iam.manage_res": "管理{0)",
   "iam.reset_mfa_tips": "重置后，用户需在登录页面需重新设置，之前信息将失效！",

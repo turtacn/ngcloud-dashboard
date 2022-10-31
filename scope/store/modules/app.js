@@ -6,7 +6,7 @@ const loginLogo = require('@scope/images/cloudpod_login_logo.svg')
 export default {
   state: {
     companyInfo: {
-      copyright: 'Made with ❤ Cloudpods',
+      copyright: 'Made with Sangfor NgCloud Team',
       logo,
       loginLogo,
       name: 'OneCloud',

@@ -1,0 +1,1 @@
+docker run --rm -it -v $(pwd):/work -p 8080:8080 jdcloudiaas/turta:npm  yarn build

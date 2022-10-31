@@ -20,7 +20,7 @@
 <script>
 import _ from 'lodash'
 import * as R from 'ramda'
-import { RDS_MONITOR_OPTS } from '@DB/constants'
+import { RDS_MONITOR_ALL_OPTS } from '@DB/constants'
 import { UNITS, autoComputeUnit, getRequestT } from '@/utils/utils'
 import Monitor from '@/sections/Monitor'
 import WindowsMixin from '@/mixins/windows'
@@ -54,6 +54,12 @@ export default {
       }
       return ''
     },
+    engine () {
+      if (this.data.engine) {
+        return this.data.engine.toLowerCase()
+      }
+      return ''
+    },
     hadMonitor () {
       const brand = this.data.brand.toLowerCase()
       const surportBrand = [HYPERVISORS_MAP.aliyun.key, HYPERVISORS_MAP.apsara.key, HYPERVISORS_MAP.huawei.key, HYPERVISORS_MAP.hcso.key, HYPERVISORS_MAP.qcloud.key, HYPERVISORS_MAP.jdcloud.key, HYPERVISORS_MAP.azure.key, HYPERVISORS_MAP.aws.key]
@@ -61,7 +67,9 @@ export default {
     },
     monitorConstants () {
       const brand = this.brand
-      return RDS_MONITOR_OPTS[brand] || []
+      return RDS_MONITOR_ALL_OPTS.filter(item => {
+        return item.supportBrands.includes(brand)
+      })
     },
     dbId () {
       return this.data.id
@@ -76,6 +84,10 @@ export default {
     async fetchData () {
       this.loading = true
       const resList = []
+      const extraConstants = {}
+      if (this.data.brand === 'Azure' && (this.data.engine || '').indexOf('SQLServer') !== -1) {
+        extraConstants.groupBy = [{ type: 'tag', params: ['database'] }]
+      }
       for (let idx = 0; idx < this.monitorConstants.length; idx++) {
         const val = this.monitorConstants[idx]
         try {
@@ -86,7 +98,7 @@ export default {
               data: this.genQueryData(val),
               params: { $t: getRequestT() },
             })
-          resList.push({ title: val.label, constants: val, series: data.series })
+          resList.push({ title: val.label, constants: { ...val, ...extraConstants }, series: data.series })
           if (idx === this.monitorConstants.length - 1) {
             this.loading = false
             this.getMonitorList(resList)
@@ -116,9 +128,11 @@ export default {
         const { unit, transfer } = result.constants
         const isSizestrUnit = UNITS.includes(unit)
         let series = result.series
+        console.log('series', series)
         if (!series) series = []
         if (isSizestrUnit || unit === 'bps') {
           series = series.map(serie => {
+            console.log('serie', serie)
             return autoComputeUnit(serie, unit, transfer)
           })
         }
@@ -185,14 +199,19 @@ export default {
           })
         }, val.tags)
       }
+      const model = {
+        measurement: val.fromItem,
+        select,
+        tags,
+      }
+      // azure sqlserver 增加groupby
+      if (this.data.brand === 'Azure' && (this.data.engine || '').indexOf('SQLServer') !== -1) {
+        model.groupBy = [{ type: 'tag', params: ['database'] }]
+      }
       const data = {
         metric_query: [
           {
-            model: {
-              measurement: val.fromItem,
-              select,
-              tags,
-            },
+            model,
           },
         ],
         scope: this.$store.getters.scope,

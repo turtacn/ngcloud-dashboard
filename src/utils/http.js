@@ -115,7 +115,7 @@ const resolveError = error => {
 }
 const errors = {}
 const showErrorNotify = ({ errorMsg, reqMsg }) => {
-  const message = R.is(Array, errorMsg) ? i18n.t('common.text00123') : errorMsg.class
+  const message = R.is(Array, errorMsg) ? i18n.t('common.text00123') : (i18n.te(`notify.${errorMsg.class}`) ? i18n.t(`notify.${errorMsg.class}`) : errorMsg.class)
   const key = `notification-${uuid(32)}`
   const options = {
     key,
@@ -125,7 +125,8 @@ const showErrorNotify = ({ errorMsg, reqMsg }) => {
     icon: h => <a-icon type="info-circle" class="error-color" />,
     btn: h => {
       const id = `ErrorDialog-${uuid(32)}`
-      return h('a-button', {
+      const { hide_web_error_details = false } = store.getters.auth.regions || {}
+      return hide_web_error_details ? null : h('a-button', {
         props: {
           type: 'link',
           size: 'small',

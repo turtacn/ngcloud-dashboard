@@ -1,5 +1,5 @@
 import { typeClouds } from '@/utils/common/hypervisor'
-import { getDocsUrl, isCE } from '@/utils/utils'
+import { getDocsUrl } from '@/utils/utils'
 import i18n from '@/locales'
 const providerMap = typeClouds.getProviderlowcase()
 const aliyunLogo = require('../../../../src/assets/images/providers/aliyun.svg')
@@ -24,13 +24,11 @@ const cloudpodsLogo = require('../../../../src/assets/images/providers/cloudpods
 const hcsoLogo = require('../../../../src/assets/images/providers/hcso.svg')
 const nutanixLogo = require('../../../../src/assets/images/providers/nutanix.svg')
 const bingocloudLogo = require('../../../../src/assets/images/providers/bingocloud.svg')
+const remotefileLogo = require('../../../../src/assets/images/providers/remotefile.svg')
 
 function getDocsCloudaccountPath (scope) {
   const docsUrl = getDocsUrl(scope)
-  if (isCE()) {
-    return `${docsUrl}multicloud/cloudaccounts`
-  }
-  return `${docsUrl}/user/multiplecloud/cloudaccount/cloudaccount/`
+  return `${docsUrl}web_ui/multiplecloud/cloudaccount/cloudaccount`
 }
 
 export const CLOUDACCOUNT_TYPES = {
@@ -155,6 +153,12 @@ export const CLOUDACCOUNT_TYPES = {
         width: '100px',
       },
     },
+    remotefile: {
+      name: providerMap.remotefile.label,
+      logo: remotefileLogo,
+      component: 'RemoteFileCreate',
+      provider: providerMap.remotefile.key,
+    },
   },
   storage: {
     s3: {
@@ -211,17 +215,21 @@ export function getCloudaccountDocs (scope) {
     nutanix: i18n.t('cloudenv.create_nutanix', [docs_path]),
     bingocloud: i18n.t('cloudenv.create_bingocloud', [docs_path]),
   }
-  if (isCE()) {
-    Object.keys(docs).forEach(v => {
-      docs[v] = `${docs_path}/tutorial/create`
-    })
-  }
+  // if (isCE()) {
+  //   Object.keys(docs).forEach(v => {
+  //     docs[v] = `${docs_path}/tutorial/create`
+  //   })
+  // } else {
+  //   Object.keys(docs).forEach(v => {
+  //     docs[v] = `${docs_path}/tutorial/create`
+  //   })
+  // }
   return docs
 }
 
 export const ACCESS_URL = {
   huawei: {
-    InternationalCloud: i18n.t('cloudenv.text_139'),
+    // InternationalCloud: i18n.t('cloudenv.text_139'),
     ChinaCloud: i18n.t('cloudenv.text_140'),
   },
   aws: {
@@ -547,10 +555,7 @@ export function getBillBucketUrlDocs (scope) {
 }
 
 export function getSamlUserDocs (scope) {
-  const docsUrl = getDocsCloudaccountPath(scope)
-  if (isCE) {
-    return `${docsUrl}/tutorial/cloudsso/cloudsso/`
-  }
+  const docsUrl = getDocsCloudaccountPath(scope) + '/tutorial/cloudsso/cloudsso/'
   return i18n.t('cloudenv.dentity_provider', [docsUrl])
 }
 
@@ -572,4 +577,5 @@ export const notSupportSelectRegion = [
   providerMap.apsara.key,
   providerMap.cloudpods.key,
   providerMap.hcso.key,
+  providerMap.remotefile.key,
 ]

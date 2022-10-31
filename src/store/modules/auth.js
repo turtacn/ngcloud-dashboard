@@ -18,6 +18,7 @@ import {
   getLoggedUsersFromStorage,
   setLoggedUsersInStorage,
   getSsoIdpIdFromCookie,
+  setLoginModeInStorage,
 } from '@/utils/auth'
 import { SCOPES_MAP } from '@/constants'
 import router from '@/router'
@@ -293,13 +294,18 @@ export default {
         }
         await commit('SET_SCOPE', newCurrentHistoryUserStorageValue.scope)
         await commit('SET_TENANT', newCurrentHistoryUserStorageValue.tenant)
-        await commit('UPDATE_HISTORY_USERS', {
-          key: data.username,
-          value: newCurrentHistoryUserStorageValue,
-        })
+        if (data.username) {
+          await commit('UPDATE_HISTORY_USERS', {
+            key: data.username,
+            value: newCurrentHistoryUserStorageValue,
+          })
+        }
         await commit('scopedPolicy/DEL_DATA', {
           name: 'sub_hidden_menus',
         })
+        // 本地存储记录登录方式信息，下次登录默认使用该方式登录 {mode: 'account|mobile', content: 'username|phone number'}
+        const { mobile, username } = data
+        setLoginModeInStorage({ mode: mobile ? 'mobile' : 'account', content: mobile || username })
         return response.data
       } catch (error) {
         throw error

@@ -68,4 +68,15 @@ export default {
     secgroupAdminGuestCnt: '作为管理安全组绑定虚拟机数量',
     secgroupSystemGuestCnt: '安全组绑定作为系统资源的虚拟机数量',
   },
+  notify: {
+    TooManyRequests: '发送验证码频率太高，请稍后再试',
+    NotFoundError: '资源不存在',
+    FindUserByMobile: '该手机号未注册',
+    IncorrectUsernameOrPassword: '用户名或者密码不正确',
+    InvalidCredentialError: '无效的认证信息',
+    TooManyFailedAttempts: '尝试失败次数过多',
+    InputParameterError: '参数错误',
+    WrongCaptchaLength: '验证码长度不正确',
+    UserLocked: '用户锁定',
+  },
 }

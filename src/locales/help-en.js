@@ -68,4 +68,14 @@ export default {
     secgroupAdminGuestCnt: 'Number of virtual machines bound as management security group',
     secgroupSystemGuestCnt: 'Number of virtual machines bound by security group as system resources',
   },
+  notify: {
+    TooManyRequests: 'TooManyRequests',
+    NotFoundError: 'The resource does not exist',
+    FindUserByMobile: 'The mobile phone number is not registered',
+    IncorrectUsernameOrPassword: 'IncorrectUsernameOrPassword',
+    InvalidCredentialError: 'InvalidCredentialError',
+    InputParameterError: 'InputParameterError',
+    WrongCaptchaLength: 'wrong captcha length',
+    UserLocked: 'UserLocked',
+  },
 }

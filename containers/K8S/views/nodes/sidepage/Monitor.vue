@@ -1,5 +1,5 @@
 <template>
-  <base-monitor :data="data" :constants="monitorConstants" :resId="serverId" idKey="id" />
+  <base-monitor :data="data" :constants="monitorConstants" :resId="serverId" idKey="node_id" />
 </template>
 
 <script>

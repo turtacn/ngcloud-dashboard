@@ -2,12 +2,13 @@
   <div>
     <a-radio-group v-model="time.dateMode" @change="handleDateModeChange">
       <a-radio-button v-for="item in timeOpts" :key="item.key" :value="item.key">{{ item.label }}</a-radio-button>
-      <custom-date :customDate.sync="customDate" :time.sync="time.dateMode" :customTimeLabel="customTimeLabel" :canSelectTodayAfter="canSelectTodayAfter" />
+      <custom-date :customDate.sync="customDate" :time.sync="time.dateMode" :customTimeLabel="customTimeLabel" :showFormat="showFormat" :canSelectTodayAfter="canSelectTodayAfter" />
     </a-radio-group>
   </div>
 </template>
 
 <script>
+import moment from 'moment'
 import i18n from '@/locales'
 import CustomDate from './CustomDate'
 
@@ -79,8 +80,12 @@ export default {
     formatter: {
       type: Function,
       default: (time) => {
-        return this.$moment(time).format('YYYYMMDD')
+        return moment(time).format('YYYYMMDD')
       },
+    },
+    showFormat: {
+      type: String,
+      default: 'YYYY-MM-DD',
     },
   },
   data () {
@@ -178,8 +183,8 @@ export default {
     updateCustomTimeLabel (type, date) {
       try {
         if (type === 'custom') {
-          const start = this.$moment(date[this.start].replace('TZ', '')).format('YYYY-MM-DD')
-          const end = this.$moment(date[this.end].replace('TZ', '')).format('YYYY-MM-DD')
+          const start = this.$moment(date[this.start].replace('TZ', '')).format(this.showFormat)
+          const end = this.$moment(date[this.end].replace('TZ', '')).format(this.showFormat)
           this.customTimeLabel = ` (${start} - ${end})`
         } else {
           this.customTimeLabel = ''

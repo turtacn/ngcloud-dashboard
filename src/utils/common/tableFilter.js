@@ -346,13 +346,13 @@ export function getRegionFilter () {
   }
 }
 
-export function distinctFieldFilter ({ service = '', field = '', multiple = true } = {}) {
+export function distinctFieldFilter ({ service = '', label = '', field = '', multiple = true, type = 'field' } = {}) {
   return {
-    label: i18n.t(`${service}.title.${field}`),
+    label: label || i18n.t(`${service}.title.${field}`),
     dropdown: true,
     multiple: multiple,
     distinctField: {
-      type: 'field',
+      type,
       key: `${field}`,
     },
   }
@@ -462,6 +462,21 @@ export function getDescriptionFilter (params = {}) {
     filter: true,
     formatter: val => {
       return `${field}.contains('${val}')`
+    },
+  }
+}
+
+export function getGuestStatusFilter () {
+  return {
+    label: i18n.t('compute.guest.status'),
+    dropdown: true,
+    multiple: true,
+    distinctField: {
+      type: 'extra_field',
+      key: 'guest_status',
+    },
+    mapper: data => {
+      return mapperStatusToItems(data, 'server')
     },
   }
 }

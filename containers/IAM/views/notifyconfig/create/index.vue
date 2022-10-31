@@ -192,7 +192,7 @@ export default {
       Promise.all([commonForm, typeForm]).then(async values => {
         const [common, content] = values
         const { scope, domain, name, type } = common
-        const { verifiyCode, alertsCode, errorCode, verifiyCodeUn, alertsCodeUn, errorCodeUn, ...rest } = content
+        const { verifiyCode, alertsCode, errorCode, verifiyCodeChannel, alertsCodeChannel, errorCodeChannel, verifiyCodeEn, alertsCodeEn, errorCodeEn, verifiyCodeEnChannel, alertsCodeEnChannel, errorCodeEnChannel, ...rest } = content
         this.loading = true
         await this.manager.create({
           data: {
@@ -203,7 +203,14 @@ export default {
             project_domain_id: domain,
           },
         })
-        if (type === 'mobile') this.doCreateMobileTpl(verifiyCode, alertsCode, errorCode, verifiyCodeUn, alertsCodeUn, errorCodeUn)
+        if (type === 'mobile') {
+          this.doCreateMobileTpl(
+            verifiyCode, alertsCode, errorCode,
+            verifiyCodeChannel, alertsCodeChannel, errorCodeChannel,
+            verifiyCodeEn, alertsCodeEn, errorCodeEn,
+            verifiyCodeEnChannel, alertsCodeEnChannel, errorCodeEnChannel,
+          )
+        }
         this.$router.push('/notifyconfig')
         this.loading = false
       }).catch((err) => {
@@ -264,45 +271,79 @@ export default {
         console.error(err)
       }
     },
-    async doCreateMobileTpl (verifiyCode, alertsCode, errorCode, verifiyCodeUn, alertsCodeUn, errorCodeUn) {
-      try {
-        await this.notifytemplatesManager.create({
-          data: {
-            contact_type: 'mobile',
-            force: true,
-            templates: this.generateTemplates(verifiyCode, alertsCode, errorCode, verifiyCodeUn, alertsCodeUn, errorCodeUn),
-          },
-        })
-      } catch (err) {
-        console.error(err)
+    async doCreateMobileTpl (verifiyCode, alertsCode, errorCode, verifiyCodeChannel, alertsCodeChannel, errorCodeChannel, verifiyCodeEn, alertsCodeEn, errorCodeEn, verifiyCodeEnChannel, alertsCodeEnChannel, errorCodeEnChannel) {
+      const tpls = this.generateTemplates(verifiyCode, alertsCode, errorCode, verifiyCodeChannel, alertsCodeChannel, errorCodeChannel, verifiyCodeEn, alertsCodeEn, errorCodeEn, verifiyCodeEnChannel, alertsCodeEnChannel, errorCodeEnChannel)
+      if (tpls) {
+        try {
+          await this.notifytemplatesManager.create({
+            data: {
+              contact_type: 'mobile',
+              force: true,
+              templates: tpls,
+            },
+          })
+        } catch (err) {
+          console.error(err)
+        }
       }
     },
-    generateTemplates (verifiyCode, alertsCode, errorCode, verifiyCodeUn, alertsCodeUn, errorCodeUn) {
-      const tpls = [{
-        lang: 'cn',
-        topic: 'VERIFY',
-        content: verifiyCode,
-      }, {
-        lang: 'cn',
-        topic: 'MONITOR',
-        content: alertsCode,
-      }, {
-        lang: 'cn',
-        topic: 'USER_LOGIN_EXCEPTION',
-        content: errorCode,
-      }, {
-        lang: 'en',
-        topic: 'VERIFY',
-        content: verifiyCodeUn,
-      }, {
-        lang: 'en',
-        topic: 'MONITOR',
-        content: alertsCodeUn,
-      }, {
-        lang: 'en',
-        topic: 'USER_LOGIN_EXCEPTION',
-        content: errorCodeUn,
-      }]
+    channelCodeContent (code, channel) {
+      if (channel) {
+        return channel + '/' + code
+      } else {
+        return code
+      }
+    },
+    generateTemplates (verifiyCode, alertsCode, errorCode, verifiyCodeChannel, alertsCodeChannel, errorCodeChannel, verifiyCodeEn, alertsCodeEn, errorCodeEn, verifiyCodeEnChannel, alertsCodeEnChannel, errorCodeEnChannel) {
+      const tpls = []
+      let cont = this.channelCodeContent(verifiyCode, verifiyCodeChannel)
+      if (cont) {
+        tpls.push({
+          lang: 'cn',
+          topic: 'VERIFY',
+          content: cont,
+        })
+      }
+      cont = this.channelCodeContent(alertsCode, alertsCodeChannel)
+      if (cont) {
+        tpls.push({
+          lang: 'cn',
+          topic: 'MONITOR',
+          content: cont,
+        })
+      }
+      cont = this.channelCodeContent(errorCode, errorCodeChannel)
+      if (cont) {
+        tpls.push({
+          lang: 'cn',
+          topic: 'USER_LOGIN_EXCEPTION',
+          content: cont,
+        })
+      }
+      cont = this.channelCodeContent(verifiyCodeEn, verifiyCodeEnChannel)
+      if (cont) {
+        tpls.push({
+          lang: 'en',
+          topic: 'VERIFY',
+          content: cont,
+        })
+      }
+      cont = this.channelCodeContent(alertsCodeEn, alertsCodeEnChannel)
+      if (cont) {
+        tpls.push({
+          lang: 'en',
+          topic: 'MONITOR',
+          content: cont,
+        })
+      }
+      cont = this.channelCodeContent(errorCodeEn, errorCodeEnChannel)
+      if (cont) {
+        tpls.push({
+          lang: 'en',
+          topic: 'USER_LOGIN_EXCEPTION',
+          content: cont,
+        })
+      }
       return tpls.map(v => {
         return {
           ...v,

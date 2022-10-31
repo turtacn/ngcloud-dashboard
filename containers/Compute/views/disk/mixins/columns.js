@@ -46,6 +46,7 @@ export default {
       {
         field: 'disk_size',
         title: i18n.t('table.title.disk_size'),
+        sortable: true,
         minWidth: 50,
         formatter: ({ cellValue }) => {
           return sizestr(cellValue, 'M', 1024)
@@ -72,12 +73,20 @@ export default {
           return cellValue === 'sys' ? i18n.t('compute.text_49') : i18n.t('compute.text_50')
         },
       },
+      getStatusTableColumn({
+        field: 'is_ssd',
+        title: 'SSD',
+        statusModule: 'disk_is_ssd',
+        width: 30,
+      }),
       getUnusedTableColumn({ vm: this }),
       {
         field: 'guest',
         title: this.$t('res.server'),
         minWidth: 100,
         showOverflow: 'ellipsis',
+        sortable: true,
+        sortBy: 'order_by_server',
         slots: {
           default: ({ row }, h) => {
             if (this.isPreLoad && !row.guest) return [<data-loading />]

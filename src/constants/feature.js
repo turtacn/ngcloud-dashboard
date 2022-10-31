@@ -39,7 +39,7 @@ const meta = (module = 'default', group = 'default', is_account = false) => {
 * @params key 唯一标识
 * @params meta 元数据信息。 可选值: module (大类), group (小类), is_account(是否为云账号)， is_feature（是否为功能特性）
 *  -- module可选值： resource_managent(资源管理),monitor(监控运维),bill(费用管理), auth(认证管理)
-*  -- group 可选值:  onecloud(云联壹云私有云平台),public(公有云纳管),private(私有云&虚拟化平台),storage(对象存储)
+*  -- group 可选值:  onecloud(下一代超融合云私有云平台),public(公有云纳管),private(私有云&虚拟化平台),storage(对象存储)
 *  -- is_account可选值: true/false. 默认false
 *  -- is_feature可选值: true/false, 默认false
 * @params visiable  是否可见, 默认: true.  true/false || function() boolean
@@ -142,6 +142,10 @@ const LicenseItems = [
       width: '100px',
       height: '24px',
     },
+  },
+  {
+    key: 'remotefile',
+    meta: meta('resource_managent', 'private', true),
   },
   {
     key: 's3',

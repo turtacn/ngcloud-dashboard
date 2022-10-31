@@ -12,8 +12,8 @@
         <template slot="title" v-if="disableTips">
           {{ disableTips }}
         </template>
-        <a-button class="ml-2" type="link" @click="handleInstallAgent" :disabled="disable" v-show="showInstallButton">
-          {{ $t('compute.vminstance.monitor.install_agent') }}
+        <a-button class="ml-2" type="link" @click="handleInstallAgent" :disabled="disable">
+          {{ buttonText }}
         </a-button>
       </a-tooltip>
     </div>
@@ -27,6 +27,7 @@
 <script>
 // import _ from 'lodash'
 import WindowsMixin from '@/mixins/windows'
+import { getDocsUrl } from '@/utils/utils'
 
 export default {
   name: 'InstallAgentForm',
@@ -95,12 +96,8 @@ export default {
       return this.agent_install_status === 'install_failed' && this.install_failed_code === 'NoReachInfluxdb'
     },
     peHelpLink () {
-      const lang = this.$store.getters.setting.language
-      if (lang === 'zh-CN') {
-        return '/docs/zh/docs/user/network/ssh/sshproxy/'
-      } else {
-        return '/docs/en/docs/user/network/ssh/sshproxy/'
-      }
+      const docsUrl = getDocsUrl(this.$store.getters.scope)
+      return docsUrl + 'web_ui/network/ssh/sshproxy'
     },
     install_failed_code () {
       return this.agent_install_status === 'install_failed' && this.data.agent_fail_code
@@ -109,11 +106,23 @@ export default {
       return this.agent_install_status === 'install_failed' && this.data.agent_fail_reason
     },
     disable () {
-      return (this.data.os_type && this.data.os_type === 'Windows') || this.data.status !== 'running'
+      if (this.data?.os_type === 'Windows') {
+        return this.data.status !== 'ready'
+      }
+      return this.data.status !== 'running'
+    },
+    buttonText () {
+      if (this.showInstallButton) {
+        return this.$t('compute.vminstance.monitor.install_agent')
+      } else {
+        return this.$t('compute.vminstance.monitor.reinstall_agent')
+      }
     },
     disableTips () {
-      if (this.data.os_type && this.data.os_type === 'Windows') {
-        return this.$t('compute.text_1285')
+      if (this.data?.os_type === 'Windows') {
+        if (this.data.status !== 'ready') {
+          return this.$t('compute.text_1397')
+        }
       }
       if (this.data.status !== 'running') {
         return this.$t('compute.text_1397')
@@ -134,18 +143,40 @@ export default {
       immediate: true,
       deep: true,
     },
+    'data.metadata.telegraf_deployed' (val, oldval) {
+      if (val === 'true') {
+        this.agent_install_status = 'installed'
+        this.$emit('onInstall', { status: 'succeed' })
+      }
+    },
   },
   methods: {
     async handleInstallAgent (e) {
       // if hypervisor is kvm. directly install agent
       if (this.data.hypervisor === 'kvm') {
-        const data = {
-          auto_choose_proxy_endpoint: true,
-          server_id: this.data.id,
+        if (this.data.status === 'running') {
+          const data = {
+            auto_choose_proxy_endpoint: true,
+            server_id: this.data.id,
+          }
+          const ret = await new this.$Manager('scripts').performAction({ id: 'monitor agent', action: 'apply', data: data })
+          await this.handleInstallTask(ret.data.script_apply_id)
+          return
         }
-        const ret = await new this.$Manager('scripts').performAction({ id: 'monitor agent', action: 'apply', data: data })
-        await this.handleInstallTask(ret.data.script_apply_id)
-        return
+        if (this.data?.os_type === 'Windows' && this.data.status === 'ready') {
+          const data = {
+            deploy_telegraf: true,
+          }
+          await new this.$Manager('servers').performAction({ id: this.data.id, action: 'deploy', data: data })
+          this.agent_install_status = 'installing'
+          const timer = setInterval(() => {
+            this.$bus.$emit('VMInstanceListSingleRefresh', [this.data.id])
+            if (this.data.metadata?.telegraf_deployed === 'true') {
+              clearInterval(timer)
+            }
+          }, 5000)
+          return
+        }
       }
 
       this.createDialog('InstallAgentDialog', {

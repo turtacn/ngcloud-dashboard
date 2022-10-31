@@ -30,7 +30,12 @@
         <a-form-item :label="$t('dashboard.text_6')">
           <a-input v-decorator="decorators.name" />
         </a-form-item>
-        <quota-config :fc="form.fc" :decorators="decorators" :usage-label="$t('dashboard.text_20')" @update:usage_key="setDefaultName" />
+        <quota-config
+          :showTag="true"
+          :fc="form.fc"
+          :decorators="decorators"
+          :usage-label="$t('dashboard.text_20')"
+          @update:usage_key="setDefaultName" />
         <a-form-item v-if="canShowUnitConfig" :label="$t('common_250')">
           <base-select
               v-decorator="decorators.unit"
@@ -77,6 +82,9 @@ export default {
         fd: {
           name: initialNameValue,
           usage_key: initialUsageKeyValue,
+          regionAccountType: initialRegionAccountType,
+          schedtag: '',
+          tags: [],
         },
         fi: {
           nameTouched: false,
@@ -135,6 +143,18 @@ export default {
           'unit',
           {
             initialValue: initUnitValue,
+          },
+        ],
+        schedtag: [
+          'schedtag',
+          {
+            initialValue: this.params && this.params.schedtag,
+          },
+        ],
+        tags: [
+          'tags',
+          {
+            initialValue: this.params && this.params.tags,
           },
         ],
       },
@@ -238,6 +258,14 @@ export default {
         params.range_id = fd.account
       }
       if (fd.brand) params.brand = fd.brand
+      if (fd.schedtag) {
+        params.range_type = 'schedtags'
+        params.range_id = fd.schedtag
+      }
+      if (fd.tags?.length > 0) {
+        params['project_tags.0.0.key'] = fd.tags[0].key
+        params['project_tags.0.0.value'] = fd.tags[0].value
+      }
       return params
     },
     async fetchUsage () {

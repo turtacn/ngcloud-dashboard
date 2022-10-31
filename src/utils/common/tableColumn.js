@@ -270,11 +270,13 @@ export const getCopyWithContentTableColumn = ({
   }
 }
 
-export const getIpsTableColumn = ({ field = 'ips', title = 'IP', vm = {} } = {}) => {
+export const getIpsTableColumn = ({ field = 'ips', title = 'IP', vm = {}, sortable = false } = {}) => {
   return {
     field,
     title,
     width: '180px',
+    sortBy: 'order_by_ip',
+    sortable,
     slots: {
       default: ({ row }, h) => {
         if (!row.eip && !row.ips && !row.vips) {
@@ -364,6 +366,7 @@ export const getTagTableColumn = ({
   width = 50,
   customTitle = '',
   list = {},
+  params = {}, // 请求已有标签传入参数
   editCheck = (row) => true,
 } = {}) => {
   return {
@@ -402,6 +405,7 @@ export const getTagTableColumn = ({
               ignorePrefix,
               customTitle,
               list,
+              tagParams: params,
               canEdit: editCheck(row),
             },
           }),
@@ -830,8 +834,9 @@ export const getServerMonitorAgentInstallStatus = ({
     slots: {
       default: function ({ row }, h) {
         const status = _.get(row, ['metadata', 'sys:monitor_agent']) || _.get(row, ['metadata', '__monitor_agent'])
-        if (row.hasOwnProperty('agent_status')) {
-          if (row.agent_status === 'succeed') {
+        const deploy = _.get(row, ['metadata', 'telegraf_deployed'])
+        if (row.hasOwnProperty('agent_status') || deploy) {
+          if (row.agent_status === 'succeed' || deploy) {
             return i18n.t('compute.monitor.agent.install_status.installed')
           } else if (row.agent_status === 'applying') {
             return (<div>{i18n.t('compute.monitor.agent.install_status.installing')}<a-icon style="margin-left:5px" type="loading" /></div>)

@@ -2,7 +2,6 @@ import { mapGetters } from 'vuex'
 import { Base64 } from 'js-base64'
 import qs from 'qs'
 import protocolCheck from 'custom-protocol-detection'
-import { commonUnabled, cloudEnabled, cloudUnabledTip, commonEnabled, commonTip } from '../utils'
 import { SERVER_TYPE } from '@Compute/constants'
 import { disableDeleteAction } from '@/utils/common/tableActions'
 import { typeClouds, findPlatform } from '@/utils/common/hypervisor'
@@ -10,8 +9,14 @@ import i18n from '@/locales'
 import { HOST_CPU_ARCHS } from '@/constants/compute'
 import { PROVIDER_MAP } from '@/constants'
 import { hasSetupKey } from '@/utils/auth'
+import VncInfoFetcher from '@Compute/sections/VncInfoFetcher'
+import { KVM_SHARE_STORAGES } from '@/constants/storage'
+import { commonUnabled, cloudEnabled, cloudUnabledTip, commonEnabled, commonTip } from '../utils'
 
 export default {
+  components: {
+    VncInfoFetcher,
+  },
   computed: {
     ...mapGetters(['isAdminMode', 'isDomainMode', 'userInfo', 'auth']),
     enableMFA () {
@@ -26,7 +31,7 @@ export default {
         permission: 'server_get_vnc',
         actions: obj => {
           let ret = []
-          ret.push({
+          const vncRemote = {
             label: i18n.t('compute.text_1274'),
             action: () => {
               const success = () => {
@@ -38,9 +43,14 @@ export default {
                     return true
                   }
                 }
+                const params = {}
+                if (obj.hypervisor === typeClouds.hypervisorMap.openstack.key) {
+                  params.origin = true
+                }
                 this.webconsoleManager.performAction({
                   id: 'server',
                   action: obj.id,
+                  data: params,
                 }).then(({ data }) => {
                   if (isValidURL(data.connect_params)) {
                     this.open(obj, data.connect_params)
@@ -64,7 +74,13 @@ export default {
               }
               return ret
             },
-          })
+          }
+          if (obj.provider === 'OneCloud' && obj.status === 'running') {
+            vncRemote.render = (obj, params) => {
+              return <vnc-info-fetcher onManager={this.onManager} row={obj} buttonText={i18n.t('compute.text_1274')} buttonProps={params} />
+            }
+          }
+          ret.push(vncRemote)
           const mapIpActions = (ipInfoList) => {
             const options = []
             ipInfoList.forEach(ipInfo => {
@@ -769,6 +785,33 @@ export default {
                     return ret
                   },
                   hidden: () => !(hasSetupKey(['onecloud'])) || this.$isScopedPolicyMenuHidden('vminstance_hidden_menus.server_perform_set_disk_speed'),
+                },
+                // 更换块存储
+                {
+                  label: i18n.t('compute.vminstance.change_disk_storage'),
+                  action: () => {
+                    this.createDialog('VmChangeBlockStorageDialog', {
+                      data: [obj],
+                      columns: this.columns,
+                      onManager: this.onManager,
+                      refresh: this.refresh,
+                    })
+                  },
+                  meta: () => {
+                    const provider = obj.provider
+                    const ret = {
+                      validate: true,
+                    }
+                    if (obj.hypervisor !== typeClouds.hypervisorMap.kvm.key) {
+                      ret.validate = false
+                      ret.tooltip = i18n.t('compute.text_473', [PROVIDER_MAP[provider].label])
+                      return ret
+                    }
+                    return {
+                      validate: cloudEnabled('changeBlockStorage', obj),
+                      tooltip: cloudUnabledTip('changeBlockStorage', obj),
+                    }
+                  },
                 },
                 {
                   label: this.$t('compute.bind_physical_cpu'),
@@ -1506,11 +1549,44 @@ export default {
                       ret.tooltip = i18n.t('compute.text_473', [PROVIDER_MAP[provider].label])
                       return ret
                     }
-                    ret.validate = true
+                    ret.validate = cloudEnabled('transfer', obj)
                     ret.tooltip = cloudUnabledTip('transfer', obj)
                     return ret
                   },
                   hidden: () => !(hasSetupKey(['openstack', 'onecloud'])) || this.$isScopedPolicyMenuHidden('vminstance_hidden_menus.server_perform_transfer'),
+                },
+                {
+                  label: this.$t('compute.server.quick.recovery'),
+                  action: () => {
+                    this.createDialog('VmQuickRecoveryDialog', {
+                      data: [obj],
+                      columns: this.columns,
+                      onManager: this.onManager,
+                    })
+                  },
+                  meta: () => {
+                    const ret = {
+                      validate: true,
+                      tooltip: '',
+                    }
+                    if (obj.hypervisor !== typeClouds.hypervisorMap.kvm.key) {
+                      ret.validate = false
+                      ret.tooltip = i18n.t('compute.text_473', [PROVIDER_MAP[obj.provider].label])
+                      return ret
+                    }
+                    if (obj.host_service_status !== 'offline') {
+                      ret.validate = false
+                      ret.tooltip = this.$t('compute.quick.recovery.validate.host_status_tooltip')
+                      return ret
+                    }
+                    const isAllKVMShareStorages = obj.disks_info.every(item => KVM_SHARE_STORAGES.includes(item.storage_type))
+                    if (!isAllKVMShareStorages) {
+                      ret.validate = false
+                      ret.tooltip = this.$t('compute.quick.recovery.validate.host_status_tooltip')
+                      return ret
+                    }
+                    return ret
+                  },
                 },
               ],
             },
