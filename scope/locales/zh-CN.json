@@ -10,7 +10,7 @@
     "Apsara": "飞天",
     "HCSO": "HCSO",
     "Ecloud": "移动云",
-    "Cloudpods": "Cloudpods"
+    "Cloudpods": "NgCloud"
   },
   "scopeProviders": {
     "esxi": "VMware",
@@ -29,6 +29,6 @@
     "ucloud": "UCloud",
     "ecloud": "移动云",
     "HCSO": "HCSO",
-    "cloudpods": "Cloudpods"
+    "cloudpods": "NgCloud"
   }
 }
