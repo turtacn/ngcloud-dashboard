@@ -269,6 +269,11 @@ const GlobalSetupKeys = class {
     return setupKeysVersion
   }
 
+  hasSetupKeya(envs) {
+    let f = true
+    return f
+  }
+
   hasSetupKey (envs) {
     const _envs = R.type(envs) === 'String' ? [envs] : envs
     if (!_envs.length || !this.setupKeys) return true

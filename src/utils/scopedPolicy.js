@@ -2,7 +2,8 @@ import get from 'lodash/get'
 import store from '@/store'
 
 export const isScopedPolicyMenuHidden = (path) => {
-  return false
+  return false  //turta
+
   //get(store.getters.scopedPolicy, path, false)
 }
 

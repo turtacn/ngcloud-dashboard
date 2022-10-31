@@ -51,8 +51,7 @@ import Layout from '@/layouts/RouterView'
 import FederatednamespaceCreate from '@K8S/views/federatednamespace/create'
 import FederatedroleCreate from '@K8S/views/federatedrole/create'
 import store from '@/store'
-
-import { hasSetupKey } from '@/utils/auth'
+import { hasSetupKeya } from '@/utils/auth'
 import i18n from '@/locales'
 import { isScopedPolicyMenuHidden } from '@/utils/scopedPolicy'
 
@@ -78,7 +77,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_deployment')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -104,7 +103,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_statefulset')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -130,7 +129,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_daemonset')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -156,7 +155,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_job')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -182,7 +181,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_cronjob')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -208,7 +207,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_pod')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -229,7 +228,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_persistentvolumeclaim')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -263,7 +262,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_service')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -289,7 +288,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_ingress')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -323,7 +322,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_configmap')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -349,7 +348,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_secret')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -384,7 +383,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_cluster')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -415,7 +414,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_node')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -436,7 +435,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_storageclass')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -462,7 +461,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_namespace')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -488,7 +487,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_rbacrole')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -514,7 +513,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_rbacclusterrole')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -540,7 +539,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_rbacrolebinding')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -566,7 +565,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_rbacclusterrolebinding')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -592,7 +591,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_serviceaccount')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -613,7 +612,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_kubecomponent')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -652,7 +651,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_federatednamespace')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -678,7 +677,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_federatedrole')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -704,7 +703,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_federatedclusterrole')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -730,7 +729,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_federatedrolebinding')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
@@ -756,7 +755,7 @@ export default {
               if (isScopedPolicyMenuHidden('sub_hidden_menus.k8s_federatedclusterrolebinding')) {
                 return true
               }
-              return !hasSetupKey('k8s')
+              return !hasSetupKeya('k8s')
             },
           },
           component: Layout,
