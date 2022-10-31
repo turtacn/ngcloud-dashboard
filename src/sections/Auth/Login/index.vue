@@ -10,14 +10,14 @@
           <li>可融合可分离架构</li>
           <li>融合之上</li>
           <ul>
-            <li>高性能 . 低成本</li>
-            <li>存算融合 . 存算分离</li>
+            <li>高性能 . 低成本 . 新价值</li>
+            <li>存算融合 . 存算分离 . 多网融合</li>
             <li>可私有 . 可托管 . 可分布</li>
             <li>虚机 . 容器 . 裸金属</li>
-            <li>在线 . 离线</li>
-            <li>信创 . 非信创</li>
+            <li>离线 . 在线 . 云上</li>
+            <li>信创 . 非信创 . 混合</li>
             <li>对象 . 块 . 文件</li>
-            <li>社区版 . 企业版</li>
+            <li>社区版 . 企业版 . 定制版</li>
             <li>CPU . GPU . DPU </li>
             <li>业务XAAS化接入</li>
           </ul>
@@ -27,8 +27,8 @@
             <li>计量与推荐</li>
             <li>全面SLI . SLO . SLA</li>
             <li>态势感知</li>
-          </ul>    
-        </ul>  
+          </ul>
+        </ul>
      </div>
     </div>
     <div class="login-index-right d-flex flex-column shadow-lg bg-white rounded">
