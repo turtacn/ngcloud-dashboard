@@ -89,8 +89,13 @@ router.beforeEach(async (to, from, next) => {
 
 
   // turta-add 只开启登陆认证 其他放开
+  const { canRenderDefaultLayout = true } = to.meta
+  if (canRenderDefaultLayout) {
+    store.commit('auth/SET_CAN_RENDER_DEFAULT_LAYOUT', true)
+  }
   next()
-  /*
+
+  /* turta-add
   try {
     !hasRoles && await store.dispatch('auth/getInfo')
     !hasCapability && await store.dispatch('auth/getCapabilities')
@@ -113,8 +118,9 @@ router.beforeEach(async (to, from, next) => {
       store.commit('auth/SET_CAN_RENDER_DEFAULT_LAYOUT', true)
     }
     next()
-  }*/
-})
+  } */
+}
+)
 
 scopeBeforeEach && router.beforeEach(scopeBeforeEach)
 

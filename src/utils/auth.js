@@ -332,6 +332,7 @@ const setupKeys = new GlobalSetupKeys()
 export { setupKeys }
 
 export function hasSetupKey (envs) {
+  return true //turta-add
   const { globalSetting = {} } = store.state
   if (!globalSetting || !globalSetting.value || !globalSetting.value.setupKeys || globalSetting.value.setupKeys.length === 0) return true
   const _envs = R.type(envs) === 'String' ? [envs] : envs
@@ -349,6 +350,7 @@ export function hasSetupKey (envs) {
 }
 
 export const hasMeterService = function () {
+  return true //turta-add
   const { services } = store.getters.userInfo
   const meterService = services.find(val => val.type === 'meter')
   if (meterService && meterService.status === true) {
