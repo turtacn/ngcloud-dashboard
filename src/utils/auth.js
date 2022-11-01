@@ -142,6 +142,8 @@ export function hasPermission ({
   // 资源数据
   resourceData,
 }) {
+  // turta 所有默认有权限
+  return true
   // 没有声明定义的权限key，默认认为有权限
   if (!key) return true
   // 支持检验一组定义的权限key，如 'server_list,server_create'
@@ -268,12 +270,6 @@ const GlobalSetupKeys = class {
     const { setupKeysVersion } = globalSetting.value
     return setupKeysVersion
   }
-
-  hasSetupKeya(envs) {
-    let f = true
-    return f
-  }
-
   hasSetupKey (envs) {
     const _envs = R.type(envs) === 'String' ? [envs] : envs
     if (!_envs.length || !this.setupKeys) return true

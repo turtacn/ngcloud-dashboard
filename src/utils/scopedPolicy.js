@@ -2,7 +2,7 @@ import get from 'lodash/get'
 import store from '@/store'
 
 export const isScopedPolicyMenuHidden = (path) => {
-  get(store.getters.scopedPolicy, path, false)
+  return get(store.getters.scopedPolicy, path, false)
 }
 
 export const getScopedPolicyMenuHook = (path) => {
