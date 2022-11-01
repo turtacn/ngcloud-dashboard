@@ -4,15 +4,10 @@ import Cloudaccount from '@Cloudenv/views/cloudaccount'
 import CloudaccountCreate from '@Cloudenv/views/cloudaccount/create'
 import CloudaccountUpdateBill from '@Cloudenv/views/cloudaccount/create/BillFileIndex'
 import Proxysetting from '@Cloudenv/views/proxysetting'
-// import ServerPriceComparatorCreate from '@Cloudenv/views/server-price-comparator/create'
-// import PriceComparatorList from '@Cloudenv/views/server-price-comparator'
-// import Policydefinition from '@Cloudenv/views/policydefinition'
 import Layout from '@/layouts/RouterView'
-import { hasSetupKey, setupKeys } from '@/utils/auth'
 
-import store from '@/store'
+
 import i18n from '@/locales'
-import { isScopedPolicyMenuHidden } from '@/utils/scopedPolicy'
 
 export default {
   index: 90,
@@ -30,13 +25,6 @@ export default {
           path: '/cloudaccount',
           meta: {
             label: i18n.t('cloudenv.text_12'),
-            permission: 'cloudaccounts_list',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.cloudaccount')) {
-                return true
-              }
-              return !hasSetupKey(['bill', 'private', 'vmware', 'public', 'storage'])
-            },
           },
           component: Layout,
           children: [
@@ -61,14 +49,7 @@ export default {
           path: '/cloudgroup',
           meta: {
             label: i18n.t('cloudenv.text_491'),
-            permission: 'cloudgroup_list',
             t: 'cloudenv.text_491',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.cloudgroup')) {
-                return true
-              }
-              return store.getters.isProjectMode || !hasSetupKey(['aliyun', 'huawei', 'qcloud', 'aws', 'azure', 'google', 'hcso'])
-            },
           },
           component: Layout,
           children: [
@@ -83,20 +64,6 @@ export default {
           path: '/proxysetting',
           meta: {
             label: i18n.t('cloudenv.text_14'),
-            permission: 'proxysettings_list',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.proxysetting')) {
-                return true
-              }
-              const haskeys = setupKeys.hasVersionedSetupKey({
-                '3.0': ['bill'],
-                default: true,
-              })
-              if (haskeys) {
-                return false
-              }
-              return !hasSetupKey(['private', 'vmware', 'public', 'storage'])
-            },
           },
           component: Layout,
           children: [
@@ -111,20 +78,6 @@ export default {
           path: '/projectmapping',
           meta: {
             label: i18n.t('cloudenv.text_580'),
-            permission: 'proxysettings_list',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.projectmapping')) {
-                return true
-              }
-              const haskeys = setupKeys.hasVersionedSetupKey({
-                '3.0': ['bill'],
-                default: true,
-              })
-              if (haskeys) {
-                return false
-              }
-              return !hasSetupKey('public') || setupKeys.isSubSet(['public', 'jdcloud', 'ecloud'])
-            },
           },
           component: Layout,
           children: [
