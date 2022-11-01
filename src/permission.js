@@ -74,6 +74,7 @@ router.beforeEach(async (to, from, next) => {
   if (!hasToken) {
     return toLogin(to, from, next)
   }
+
   const hasRoles = !R.isEmpty(store.getters.userInfo.roles) && !R.isNil(store.getters.userInfo.roles)
   const hasPermission = !R.isEmpty(store.getters.permission) && !R.isNil(store.getters.permission)
   const hasScopeResource = !R.isEmpty(store.getters.scopeResource) && !R.isNil(store.getters.scopeResource)
@@ -86,6 +87,10 @@ router.beforeEach(async (to, from, next) => {
   const hasGlobalServices = !R.isEmpty(store.state.common.globalServices) && !R.isNil(store.state.common.globalServices)
   const hasMonitorResourceAlerts = !R.isNil(store.state.monitor.monitorResourceAlerts)
 
+
+  // turta-add 只开启登陆认证 其他放开
+  next()
+  /*
   try {
     !hasRoles && await store.dispatch('auth/getInfo')
     !hasCapability && await store.dispatch('auth/getCapabilities')
@@ -108,7 +113,7 @@ router.beforeEach(async (to, from, next) => {
       store.commit('auth/SET_CAN_RENDER_DEFAULT_LAYOUT', true)
     }
     next()
-  }
+  }*/
 })
 
 scopeBeforeEach && router.beforeEach(scopeBeforeEach)
