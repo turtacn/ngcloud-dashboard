@@ -1,3 +1,4 @@
 1) ngcloud ui demo
 docker pull registry.cn-beijing.aliyuncs.com/yunionio/web-base:v3.6.1 &
-systemctl stop k3s && git clone https://github.com/turtacn/ngcloud-dashboard && cd ngcloud-dashboard && ./bd
+systemctl stop k3s &
+git clone https://github.com/turtacn/ngcloud-dashboard && cd ngcloud-dashboard && ./bd
