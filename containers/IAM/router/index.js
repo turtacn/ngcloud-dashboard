@@ -20,9 +20,9 @@ import NotifyConfigCreate from '@IAM/views/notifyconfig/create'
 import Contact from '@IAM/views/contact'
 import Layout from '@/layouts/RouterView'
 import i18n from '@/locales'
-import { isScopedPolicyMenuHidden } from '@/utils/scopedPolicy'
-import { hasServices, setupKeys } from '@/utils/auth'
-import store from '@/store'
+//import { isScopedPolicyMenuHidden } from '@/utils/scopedPolicy'
+//import { hasServices, setupKeys } from '@/utils/auth'
+//import store from '@/store'
 
 function menuPath (path) {
   return '/iam' + path
@@ -44,14 +44,7 @@ export default {
           path: '/idp',
           meta: {
             label: i18n.t('system.text_4'),
-            permission: 'idps_list',
             t: 'dictionary.identity_provider',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.idp')) {
-                return true
-              }
-              return !setupKeys.hasVersionedSetupKey({ '3.0': ['auth'] }, true)
-            },
           },
           component: Layout,
           children: [
@@ -79,14 +72,7 @@ export default {
           path: '/domain',
           meta: {
             label: i18n.t('system.text_5'),
-            permission: 'domains_list',
             t: 'dictionary.domain',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.domain')) {
-                return true
-              }
-              return !setupKeys.hasVersionedSetupKey({ '3.0': ['auth'] }, true)
-            },
           },
           component: Layout,
           children: [
@@ -106,14 +92,7 @@ export default {
           path: '/project',
           meta: {
             label: i18n.t('system.text_9'),
-            permission: 'projects_list',
             t: 'dictionary.project',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.project')) {
-                return true
-              }
-              return !setupKeys.hasVersionedSetupKey({ '3.0': ['auth'] }, true)
-            },
           },
           component: Layout,
           children: [
@@ -133,14 +112,7 @@ export default {
           path: '/group',
           meta: {
             label: i18n.t('system.text_7'),
-            permission: 'groups_list',
             t: 'dictionary.group',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.group')) {
-                return true
-              }
-              return !setupKeys.hasVersionedSetupKey({ '3.0': ['auth'] }, true)
-            },
           },
           component: Layout,
           children: [
@@ -155,14 +127,7 @@ export default {
           path: '/systemuser',
           meta: {
             label: i18n.t('system.text_6'),
-            permission: 'users_list',
             t: 'dictionary.user',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.systemuser')) {
-                return true
-              }
-              return !setupKeys.hasVersionedSetupKey({ '3.0': ['auth'] }, true)
-            },
           },
           component: Layout,
           children: [
@@ -184,14 +149,7 @@ export default {
           path: '/role',
           meta: {
             label: i18n.t('system.text_10'),
-            permission: 'roles_list',
             t: 'dictionary.role',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.role')) {
-                return true
-              }
-              return !setupKeys.hasVersionedSetupKey({ '3.0': ['auth'] }, true)
-            },
           },
           component: Layout,
           children: [
@@ -206,14 +164,7 @@ export default {
           path: '/policy',
           meta: {
             label: i18n.t('system.text_11'),
-            permission: 'policies_list',
             t: 'dictionary.policy',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.policy')) {
-                return true
-              }
-              return !setupKeys.hasVersionedSetupKey({ '3.0': ['auth'] }, true)
-            },
           },
           component: Layout,
           children: [
@@ -245,13 +196,6 @@ export default {
           path: menuPath('/securityalerts'),
           meta: {
             label: i18n.t('scope.text_961'),
-            permission: 'notifications_list',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.iam_securityalerts')) {
-                return true
-              }
-              return !setupKeys.hasVersionedSetupKey({ '3.0': ['auth'] }, true)
-            },
           },
           component: Layout,
           children: [
@@ -273,13 +217,6 @@ export default {
           path: '/notification',
           meta: {
             label: i18n.t('system.text_16'),
-            permission: 'notifications_list',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.notification')) {
-                return true
-              }
-              return !hasServices('notify')
-            },
             t: 'dictionary.webconsole',
           },
           component: Layout,
@@ -295,16 +232,6 @@ export default {
           path: '/notify-topic',
           meta: {
             label: i18n.t('dictionary.notify-topic'),
-            permission: 'topics_list',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.notify_topic')) {
-                return true
-              }
-              if (!(store.getters.isAdminMode || store.getters.isDomainMode)) {
-                return true
-              }
-              return !hasServices('notify')
-            },
             t: 'dictionary.notify-topic',
           },
           component: Layout,
@@ -320,16 +247,7 @@ export default {
           path: '/notifyconfig',
           meta: {
             label: i18n.t('system.text_19'),
-            permission: 'notifyconfigs_list',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.notifyconfig')) {
-                return true
-              }
-              if (!(store.getters.isAdminMode || store.getters.isDomainMode)) {
-                return true
-              }
-              return !hasServices('notify')
-            },
+
           },
           component: Layout,
           children: [
@@ -349,13 +267,6 @@ export default {
           path: '/contact',
           meta: {
             label: i18n.t('common_27'),
-            permission: 'contacts_list',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.contact')) {
-                return true
-              }
-              return !store.getters.isAdminMode && !store.getters.isDomainMode
-            },
           },
           component: Layout,
           children: [
@@ -370,13 +281,7 @@ export default {
           path: '/robot',
           meta: {
             label: i18n.t('system.robot_manage'),
-            permission: 'robots_list',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.robot')) {
-                return true
-              }
-              return false
-            },
+
           },
           component: Layout,
           children: [

@@ -33,14 +33,7 @@ export default {
           path: '/blockstorage',
           meta: {
             label: i18n.t('dictionary.blockstorage'),
-            permission: 'storages_list',
             t: 'dictionary.blockstorage',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.blockstorage')) {
-                return true
-              }
-              return !hasSetupKey(['onestack', 'openstack', 'dstack', 'zstack', 'vmware', 'nutanix', 'bingocloud'])
-            },
           },
           component: Layout,
           children: [
@@ -65,13 +58,7 @@ export default {
           path: '/bucket',
           meta: {
             label: i18n.t('storage.text_18'),
-            permission: 'buckets_list',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.bucket')) {
-                return true
-              }
-              return !hasSetupKey(['aliyun', 'aws', 'azure', 'huawei', 'qcloud', 'google', 'storage', 'hcso', 'apsara'])
-            },
+
           },
           component: Layout,
           children: [
@@ -107,14 +94,7 @@ export default {
           path: '/table-storage',
           meta: {
             label: i18n.t('dictionary.tablestore'),
-            permission: 'tablestores_list',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.table_storage')) {
-                return true
-              }
-              if (store.getters.isProjectMode) return true
-              return !hasSetupKey(['apsara', 'aliyun'])
-            },
+
           },
           component: Layout,
           children: [
@@ -139,13 +119,7 @@ export default {
           path: '/nas',
           meta: {
             label: i18n.t('dictionary.filesystem'),
-            permission: 'file_systems_list',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.nas')) {
-                return true
-              }
-              return !hasSetupKey(['aliyun', 'huawei'])
-            },
+
           },
           component: Layout,
           children: [
@@ -165,13 +139,7 @@ export default {
           path: '/access-group',
           meta: {
             label: i18n.t('dictionary.access_group'),
-            permission: 'access_groups_list',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.access_group')) {
-                return true
-              }
-              return !hasSetupKey(['aliyun', 'huawei'])
-            },
+
           },
           component: Layout,
           children: [
@@ -196,14 +164,7 @@ export default {
           path: '/backup-storage',
           meta: {
             label: i18n.t('dictionary.backup_storage'),
-            permission: 'backupstorages_list',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.backup_storage')) {
-                return true
-              }
-              if (store.getters.isProjectMode) return true
-              return !hasSetupKey(['onestack'])
-            },
+
           },
           component: Layout,
           children: [

@@ -1,9 +1,9 @@
 import Kafka from '@Middleware/views/kafka'
 import Elasticsearch from '@Middleware/views/elasticsearch'
 import Layout from '@/layouts/RouterView'
-import { hasSetupKey } from '@/utils/auth'
+//import { hasSetupKey } from '@/utils/auth'
 import i18n from '@/locales'
-import { isScopedPolicyMenuHidden } from '@/utils/scopedPolicy'
+//import { isScopedPolicyMenuHidden } from '@/utils/scopedPolicy'
 
 export default {
   index: 60,
@@ -25,14 +25,7 @@ export default {
           path: '/kafka',
           meta: {
             label: i18n.t('middleware.kafka'),
-            permission: 'kafkas_list',
             t: 'middleware.kafka',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.kafka')) {
-                return true
-              }
-              return !hasSetupKey(['qcloud'])
-            },
           },
           component: Layout,
           children: [
@@ -55,14 +48,7 @@ export default {
           path: '/elasticsearch',
           meta: {
             label: i18n.t('middleware.elasticsearch'),
-            permission: 'elastic_searchs_list',
             t: 'middleware.elasticsearch',
-            hidden: () => {
-              if (isScopedPolicyMenuHidden('sub_hidden_menus.elasticsearch')) {
-                return true
-              }
-              return !hasSetupKey(['qcloud'])
-            },
           },
           component: Layout,
           children: [
