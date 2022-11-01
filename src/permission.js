@@ -115,6 +115,7 @@ scopeBeforeEach && router.beforeEach(scopeBeforeEach)
 
 // 检测权限，无权限导向403
 router.beforeEach((to, from, next) => {
+  /* turta disable permission & hidden
   const { meta = {} } = to.matched[0]
   if (meta.permission) {
     const isPermission = hasPermission({ key: meta.permission })
@@ -124,5 +125,6 @@ router.beforeEach((to, from, next) => {
     const isHidden = meta.hidden()
     if (isHidden) return next('/403')
   }
+  */
   next()
 })
