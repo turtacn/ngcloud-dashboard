@@ -123,7 +123,6 @@ router.beforeEach(async (to, from, next) => {
 )
 
 scopeBeforeEach && router.beforeEach(scopeBeforeEach)
-
 // 检测权限，无权限导向403
 router.beforeEach((to, from, next) => {
   /* turta disable permission & hidden
