@@ -6,7 +6,7 @@
   "middleware.cloudaccount": "云账号",
   "middleware.cloudregion": "区域",
   "middleware.provider": "云平台",
-  "middleware.billing_type": "计费类型",
+  "middleware.billing_type": "计量类型",
   "middleware.elasticsearch": "Elasticsearch",
   "middleware.syncstatus": "同步状态",
   "middleware.more": "更多",

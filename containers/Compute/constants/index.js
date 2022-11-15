@@ -288,7 +288,7 @@ export const EIP_RANGES_MAP = {
   },
 }
 
-// 公有云计费方式配置选项
+// 公有云计量方式配置选项
 export const BILL_TYPES_MAP = {
   quantity: {
     label: i18n.t('billingType.postpaid'),

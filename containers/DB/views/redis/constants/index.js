@@ -2,7 +2,7 @@
 import validateForm, { isRequired } from '@/utils/validate'
 import i18n from '@/locales'
 
-// 公有云计费方式配置选项
+// 公有云计量方式配置选项
 export const BILL_TYPES_MAP = {
   postpaid: {
     label: i18n.t('db.text_55'),

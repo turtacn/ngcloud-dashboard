@@ -490,7 +490,7 @@ export default {
   },
   watch: {
     'form.fd.billType' (val) {
-      // 计费方式为包年包月平台不含 azure、aws，这里统一做清空处理
+      // 计量方式为包年包月平台不含 azure、aws，这里统一做清空处理
       if (val === BILL_TYPES_MAP.package.key) {
         this.form.fc.setFieldsValue({
           provider: undefined,
@@ -519,7 +519,7 @@ export default {
   },
   methods: {
     providerFetchSuccess (list) {
-      // 计费方式为包年包月平台不含 azure、aws、google
+      // 计量方式为包年包月平台不含 azure、aws、google
       if (this.form.fd.billType === BILL_TYPES_MAP.package.key) {
         if (this.form.fd.duration === '1W') {
           list = list.filter(item => HYPERVISORS_MAP.aliyun.key === item.name.toLowerCase())

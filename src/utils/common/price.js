@@ -57,12 +57,12 @@ export class PriceFetcher {
     this.cloudaccountId = cloudaccountId
   }
 
-  // 设置计费时长
+  // 设置计量时长
   setPeriod (period = 1) {
     this.period = period || 1
   }
 
-  // 设置计费周期. hour|month|year
+  // 设置计量周期. hour|month|year
   setPriceUnit (price_unit = 'hour') {
     this.price_unit = price_unit || 'hour'
   }

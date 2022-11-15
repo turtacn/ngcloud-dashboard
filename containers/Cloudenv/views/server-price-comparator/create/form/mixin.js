@@ -202,7 +202,7 @@ export default {
     isDomainMode () {
       return this.$store.getters.isDomainMode
     },
-    hasMeterService () { // 是否有计费的服务
+    hasMeterService () { // 是否有计量的服务
       const { services } = this.$store.getters.userInfo
       const meterService = services.find(val => val.type === 'meter')
       if (meterService && meterService.status === true) {
@@ -361,7 +361,7 @@ export default {
       const data = {
         id: uuid(),
         uid: this.userInfo.id,
-        // 资源类型, 配置, 系统盘, 数据盘, 平台, 区域, 计费模式, 购买数量, 购买时长, 费用估算
+        // 资源类型, 配置, 系统盘, 数据盘, 平台, 区域, 计量模式, 购买数量, 购买时长, 费用估算
         type: 'server',
         instance_type: sku.name,
         config,

@@ -81,7 +81,7 @@ export default {
       }, (this.data && this.data.points) || [])
       return rows
     },
-    hasMeterService () { // 是否有计费的服务
+    hasMeterService () { // 是否有计量的服务
       const { services } = this.userInfo
       const meterService = services.find(val => val.type === 'meter')
       if (meterService && meterService.status === true) {

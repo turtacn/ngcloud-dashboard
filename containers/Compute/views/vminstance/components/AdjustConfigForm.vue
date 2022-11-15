@@ -545,7 +545,7 @@ export default {
     instanceType () {
       return this.selectedItem.instance_type
     },
-    hasMeterService () { // 是否有计费的服务
+    hasMeterService () { // 是否有计量的服务
       const { services } = this.$store.getters.userInfo
       const meterService = services.find(val => val.type === 'meter')
       if (meterService && meterService.status === true) {
