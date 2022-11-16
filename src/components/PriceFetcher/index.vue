@@ -137,7 +137,7 @@ export default {
         cloudaccountId: this.cloudAccountId,
       })
 
-      // hook： 注入额外的计费项目
+      // hook： 注入额外的计量项目
       // item: { resource_type: 'disk', resource_key: 'ssd', amount: 1 }
       if (this.extraPriceItems && typeof this.extraPriceItems === 'function') {
         const items = this.extraPriceItems() || []

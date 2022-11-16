@@ -470,7 +470,7 @@ export class GenCreateData {
     if (this.fd.imageType === IMAGES_TYPE_MAP.iso.key) {
       data.cdrom = this.fd.image.data.id
     }
-    // 非预付费资源池不会添加sku
+    // 非预计算资源池不会添加sku
     if (!this.isPrepaid) {
       data.sku = this.fd.sku.name
     }

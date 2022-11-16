@@ -370,7 +370,7 @@ export default {
         brand: getBrand(hypervisor || provider),
         region: cloudregion?.label || sku.region,
         zone: zone?.label || sku.zone,
-        billing_type: billType === 'package' ? 'prepaid' : 'postpaid', // "postpaid": "按量付费", "prepaid": "包年包月"
+        billing_type: billType === 'package' ? 'prepaid' : 'postpaid', // "postpaid": "按量计算", "prepaid": "包年包月"
         count,
         duration: getDuration(duration),
         fee: getPrice(originPrice),

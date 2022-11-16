@@ -118,7 +118,7 @@ export default {
     isPublic () {
       return this.type === SERVER_TYPE.public
     },
-    // 是否为预付费资源池
+    // 是否为预计算资源池
     isPrepaid () {
       return this.resourceType === RESOURCE_TYPES_MAP.prepaid.key
     },

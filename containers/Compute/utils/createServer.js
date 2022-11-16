@@ -1116,7 +1116,7 @@ export class GenCreateData {
       os_arch: _.get(HOST_CPU_ARCHS, `[${this.fd.os_arch}].key`),
       hostname: this.fd.hostName,
     }
-    // 非预付费资源池不会添加sku
+    // 非预计算资源池不会添加sku
     if (!this.isPrepaid) {
       data.sku = this.fd.sku.name
     }

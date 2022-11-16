@@ -56,7 +56,7 @@ export default {
       const showFields = ['name', 'ip', 'instance_type']
       return this.params.columns.filter((item) => { return showFields.includes(item.field) })
     },
-    // 腾讯云、阿里云的按量付费机器，关机可停止付费
+    // 腾讯云、阿里云的按量计算机器，关机可停止计算
     canStopPaying () {
       const canStopPayingBrands = ['qcloud', 'aliyun']
       return this.params.data.every(item => {
