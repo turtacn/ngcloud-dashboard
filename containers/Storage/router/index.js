@@ -82,31 +82,31 @@ export default {
       ],
     },
 
-    /**
-     * 表格存储
-     */
-    {
-      meta: {
-        label: i18n.t('dictionary.tablestore'),
-      },
-      submenus: [
-        {
-          path: '/table-storage',
-          meta: {
-            label: i18n.t('dictionary.tablestore'),
-
-          },
-          component: Layout,
-          children: [
-            {
-              name: 'TableStorage',
-              path: '',
-              component: Tablestore,
-            },
-          ],
-        },
-      ],
-    },
+    // /**
+    //  * 表格存储
+    //  */
+    // {
+    //   meta: {
+    //     label: i18n.t('dictionary.tablestore'),
+    //   },
+    //   submenus: [
+    //     {
+    //       path: '/table-storage',
+    //       meta: {
+    //         label: i18n.t('dictionary.tablestore'),
+    //
+    //       },
+    //       component: Layout,
+    //       children: [
+    //         {
+    //           name: 'TableStorage',
+    //           path: '',
+    //           component: Tablestore,
+    //         },
+    //       ],
+    //     },
+    //   ],
+    // },
     /**
      * 文件存储
      */
