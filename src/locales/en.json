@@ -2623,6 +2623,8 @@
     "cdn": "CDN",
     "cdn_domain": "CDN Domain",
     "vpc_network": "VPC Network",
+    "physical_line": "Private Physical Network",
+    "sdwan": "SD-WAN",
     "inter_vpc_network": "Inter VPC Network",
     "intervpcnetwork": "Inter VPC Network",
     "inter_vpc_network_route_sets": "VPC Network-Router",

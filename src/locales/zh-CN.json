@@ -2643,6 +2643,8 @@
     "cdn": "内容分发网络",
     "cdn_domain": "CDN域名",
     "vpc_network": "VPC互联",
+    "physical_line": "物理专线",
+    "sdwan": "SD-WAN",
     "inter_vpc_network": "VPC互联网络",
     "intervpcnetwork": "VPC互联网络",
     "inter_vpc_network_route_sets": "VPC互联-路由",

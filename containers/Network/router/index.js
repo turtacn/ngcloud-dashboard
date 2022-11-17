@@ -109,6 +109,22 @@ export default {
           ],
         },
         {
+          path: '/private-network',
+          meta: {
+            label: i18n.t('dictionary.physical_line'),
+            t: 'dictionary.physical_line',
+          },
+          component: Layout,
+        },
+        {
+          path: '/sdwan',
+          meta: {
+            label: i18n.t('dictionary.sdwan'),
+            t: 'dictionary.sdwan',
+          },
+          component: Layout,
+        },
+        {
           path: '/vpc-peerconnect',
           meta: {
             label: i18n.t('dictionary.vpc_peer_connect'),
