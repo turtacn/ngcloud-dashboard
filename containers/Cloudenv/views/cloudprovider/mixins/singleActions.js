@@ -82,7 +82,7 @@ export default {
             columns: this.columns,
             onManager: this.onManager,
             callback: () => {
-              // 订阅同步后，云账号也要同步
+              // 订阅同步后，线上云账号也要同步
               this.cloudaccountListRefresh && this.cloudaccountListRefresh()
             },
           })

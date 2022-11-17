@@ -3,7 +3,7 @@
   "middleware.name": "名称",
   "middleware.status": "状态",
   "middleware.kafka": "Kafka",
-  "middleware.cloudaccount": "云账号",
+  "middleware.cloudaccount": "线上云账号",
   "middleware.cloudregion": "区域",
   "middleware.provider": "云平台",
   "middleware.billing_type": "计量类型",

@@ -49,10 +49,10 @@
   "system.text_47": "基础设施配额",
   "system.text_48": "类型",
   "system.text_49": "平台",
-  "system.text_50": "云账号",
+  "system.text_50": "线上云账号",
   "system.text_51": "订阅",
   "system.text_52": "区域",
-  "system.text_53": "云账号(个)",
+  "system.text_53": "线上云账号(个)",
   "system.text_54": "全局VPC(个)",
   "system.text_55": "操作",
   "system.text_56": "可用区",
@@ -387,7 +387,7 @@
   "system.text_398": "存储声明",
   "system.text_399": "安全组规则",
   "system.text_400": "负载均衡转发策略",
-  "system.text_401": "云账号",
+  "system.text_401": "线上云账号",
   "system.text_402": "云上项目",
   "system.text_403": "流程管理",
   "system.text_404": "GPU卡",
@@ -477,7 +477,7 @@
   "system.text_492": "跳过",
   "system.text_493": "新建用户成功",
   "system.text_494": "用户添加项目和角色成功",
-  "system.text_496": "请输入Google云账号",
+  "system.text_496": "请输入Google线上云账号",
   "system.text_497": "请输入正确名称",
   "system.text_498": "加入{0}",
   "system.text_499": "请选择组",
@@ -720,8 +720,8 @@
       "desc": "打开后，拉取云上安全组信息时，根据等效安全组规则，自动合并安全组！（仅限私有云及公有云）"
     },
     "compute$cloudaccount_health_status_check": {
-      "label": "云账号健康检查开关",
-      "desc": "打开后，会根据余额信息自动检查云账号是否具备创建资源的能力, 若是特殊账号可以关闭健康检查！（仅限公有云）"
+      "label": "线上云账号健康检查开关",
+      "desc": "打开后，会根据余额信息自动检查线上云账号是否具备创建资源的能力, 若是特殊账号可以关闭健康检查！（仅限公有云）"
     },
     "meter$exchange_rate_available": {
       "label": "多币种账单合并展示开关",
@@ -778,7 +778,7 @@
     "compute$skip_server_by_sys_tag_keys": {
       "label": "跳过同步带指定系统标签的虚拟机",
       "dialog_label": "指定系统标签",
-      "desc": "云账号同步时，将不同步带设置的系统标签的虚拟机",
+      "desc": "线上云账号同步时，将不同步带设置的系统标签的虚拟机",
       "dialog_desc": "请手动输入标签键，多个标签键以英文“,”分隔，如tagkey1,tagkey2"
     },
     "compute$default_admin_security_group_id": {
@@ -812,7 +812,7 @@
   "system.webconsole": "站内信{0}",
   "system.role": "角色信息",
   "system.eport": "公网IP地址(个)",
-  "system.global_http_proxy": "如果开启，在下载套餐、下载公有云镜像列表、下载费率、镜像市场列表展示、通过URL导入镜像、拉取公共镜像列表时将使用全局代理，云账号的代理服务需在O2O管理模块单独配置",
+  "system.global_http_proxy": "如果开启，在下载套餐、下载公有云镜像列表、下载费率、镜像市场列表展示、通过URL导入镜像、拉取公共镜像列表时将使用全局代理，线上云账号的代理服务需在O2O管理模块单独配置",
   "system.global_https_proxy_extra": "若请求的url是https，优先使用https代理",
   "system.global_http_proxy_extra": "建议https代理和http代理至少填写一个，可以为空，为空则代表直连",
   "system.global_https_proxy.label": "https代理",

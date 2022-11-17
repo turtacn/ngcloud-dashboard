@@ -41,7 +41,7 @@
         </a-col>
       </a-row>
     </a-form-item>
-    <!-- 云账号 -->
+    <!-- 线上云账号 -->
     <a-form-item v-if="decorators.account" :label="$t('scope.text_568')" class="mb-0">
       <a-select
         allowClear

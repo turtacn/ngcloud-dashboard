@@ -311,7 +311,7 @@ export default {
               data.shared_domains = this.fd.provider_shared_domains
             }
           }
-          // 共享云账号
+          // 共享线上云账号
           if (this.systemMode) {
             if (this.fd.system_shared_domains[0] === 'all') {
               data.scope = 'system'

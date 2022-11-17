@@ -399,7 +399,7 @@ export default {
           delete values.share_mode
         }
         if (notSupportSelectRegion.indexOf(this.currentItem.provider) === -1) {
-          this.createCloudaccountFormData = values // 存储配置账号信息用来在配置同步资源区域步骤创建云账号
+          this.createCloudaccountFormData = values // 存储配置账号信息用来在配置同步资源区域步骤创建线上云账号
           values.show_sub_accounts = true
           values.dry_run = true
         }

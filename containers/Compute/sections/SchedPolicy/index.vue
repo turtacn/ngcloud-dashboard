@@ -115,7 +115,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    showSchedCloudprovider: { // 指定显示云账号(cloudprovider接口)
+    showSchedCloudprovider: { // 指定显示线上云账号(cloudprovider接口)
       type: Boolean,
       default: false,
     },
@@ -154,7 +154,7 @@ export default {
           ...rest,
         }
       }
-      // 限制非管理后台模式下不能指定宿主机(私有云)、云账号(公有云)
+      // 限制非管理后台模式下不能指定宿主机(私有云)、线上云账号(公有云)
       if (!this.$store.getters.isAdminMode && !this.$store.getters.isDomainMode) {
         delete ret.host
       }

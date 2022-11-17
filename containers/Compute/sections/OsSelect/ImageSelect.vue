@@ -238,7 +238,7 @@ export default {
       this.fetchData()
     },
     showCloudaccount (val) {
-      if (!val) { // 如果不显示云账号，清空 fd 中的 prefer_manager
+      if (!val) { // 如果不显示线上云账号，清空 fd 中的 prefer_manager
         if (this.form && this.form.fd && this.form.fd.prefer_manager) {
           this.form.fd.prefer_manager = ''
         }

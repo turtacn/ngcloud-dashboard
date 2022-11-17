@@ -87,7 +87,7 @@ export default {
   ZoneSidePage: {
     resource: 'zones',
   },
-  // 云账号
+  // 线上云账号
   CloudaccountSidePage: {
     resource: 'cloudaccounts',
   },

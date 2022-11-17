@@ -240,7 +240,7 @@ export const PERMISSION = {
   storages_list: ['compute', 'storages', 'list'],
   // 对象存储
   buckets_list: ['compute', 'buckets', 'list'],
-  // 云账号
+  // 线上云账号
   cloudaccounts_list: ['compute', 'cloudaccounts', 'list'],
   // 代理
   proxysettings_list: ['compute', 'proxysettings', 'list'],
@@ -865,7 +865,7 @@ export const PERMISSION = {
   cloudaccounts_perform_enable_auto_sync: ['compute', 'cloudaccounts', 'perform', 'enable_auto_sync'],
   cloudaccounts_perform_disable_auto_sync: ['compute', 'cloudaccounts', 'perform', 'disable_auto_sync'],
   cloudaccounts_perform_public: ['compute', 'cloudaccounts', 'perform', 'public'],
-  externalprojects_update: ['compute', 'externalprojects', 'update'], // 云账号子订阅项目 -> 更改项目
+  externalprojects_update: ['compute', 'externalprojects', 'update'], // 线上云账号子订阅项目 -> 更改项目
   externalprojects_create: ['compute', 'externalprojects', 'create'],
 
   // 免密用户

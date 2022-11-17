@@ -965,7 +965,7 @@ export const escapeHTML = str =>
   )
 
 /**
- * 替换云账号中OneStack为oem.brand.en
+ * 替换线上云账号中OneStack为oem.brand.en
  * @param {Object} param data: {Array|Object}
  * @returns {Array|Object} data
  */
@@ -997,7 +997,7 @@ export const accountsFilterByOem = (
 }
 
 /**
- * 替换云账号中OneCloud为oem.brand[language]
+ * 替换线上云账号中OneCloud为oem.brand[language]
  * @param {Object} param data: {Array|Object}
  * @returns {Array|Object} data
  */
