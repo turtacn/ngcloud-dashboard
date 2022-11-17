@@ -35,6 +35,27 @@ export default {
       },
       submenus: [
         {
+          path: '/platform-upgrade',
+          meta: {
+            label: i18n.t('helm.text_7_1'),
+          },
+          component: Layout,
+        },
+        {
+          path: '/service-upgrade',
+          meta: {
+            label: i18n.t('helm.text_7_2'),
+          },
+          component: Layout,
+        },
+        {
+          path: '/component-upgrade',
+          meta: {
+            label: i18n.t('helm.text_7_3'),
+          },
+          component: Layout,
+        },
+        {
           path: '/scheduledtask',
           meta: {
             label: i18n.t('helm.text_8'),
