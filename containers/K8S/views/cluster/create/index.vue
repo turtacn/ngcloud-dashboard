@@ -202,7 +202,7 @@ export default {
               initialValue: { key: '', label: '' },
               rules: [
                 { required: true, message: this.$t('k8s.text_165') },
-              ],provider_image_not_prepared
+              ],
             },
           ],
         },
