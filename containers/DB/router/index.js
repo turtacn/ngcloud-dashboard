@@ -93,6 +93,20 @@ export default {
         },
       ],
     },
+    {
+      meta: {
+        label: 'OpenGauss',
+      },
+      submenus: [
+        {
+          path: '/opengauss',
+          meta: {
+            label: i18n.t('db.text_29_1'),
+          },
+          component: Layout,
+        },
+      ],
+    },
     /**
      * MongoDB
      */

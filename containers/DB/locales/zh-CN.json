@@ -29,6 +29,7 @@
   "db.text_27": "数据集使用内存",
   "db.text_28": "数据库",
   "db.text_29": "Redis实例",
+  "db.text_29_1": "OpenGaussDB实例",
   "db.text_30": "请选择平台",
   "db.text_31": "该项目下没有可用平台",
   "db.text_32": "网络",

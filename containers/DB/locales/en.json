@@ -29,6 +29,7 @@
   "db.text_27": "Datasets used memory",
   "db.text_28": "Databases",
   "db.text_29": "Redis instance",
+  "db.text_29_1": "OpenGaussDB instance",
   "db.text_30": "Please select a platform",
   "db.text_31": "There is no platform available under this project",
   "db.text_32": "Network",
