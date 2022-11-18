@@ -4,5 +4,5 @@ systemctl stop k3s &
 git clone https://github.com/turtacn/ngcloud-dashboard && cd ngcloud-dashboard && ./bd
 
 2) create vm
-server-create --disk aa70be2d-6ff0-4537-8c12-f44f67f3059c --disk 10g --mem 2g --ncpu 2 --allow-delete --hypervisor kvm test04
-server-create --disk 85980a5a-0d0c-4388-831c-7c1221088336 --disk 10g --mem 2g --ncpu 2 --allow-delete --hypervisor kvm --prefer-host 58d649a0-fbc6-43d8-86f7-340d7bac069b test05
+server-create --disk aa70be2d-6ff0-4537-8c12-f44f67f3059c --disk 10g --mem 2g --ncpu 2 --allow-delete --hypervisor kvm --prefer-host 58d649a0-fbc6-43d8-86f7-340d7bac069b test07
+server-create --disk 85980a5a-0d0c-4388-831c-7c1221088336 --disk 10g --mem 2g --ncpu 2 --allow-delete --hypervisor kvm --prefer-host 58d649a0-fbc6-43d8-86f7-340d7bac069b test06

@@ -172,21 +172,21 @@ export default {
             },
           ],
         },
-        {
-          path: '/webapp',
-          meta: {
-            label: i18n.t('compute.webapp'),
-
-          },
-          component: Layout,
-          children: [
-            {
-              name: 'WebApp',
-              path: '',
-              component: WebApp,
-            },
-          ],
-        },
+        // {
+        //   path: '/webapp',
+        //   meta: {
+        //     label: i18n.t('compute.webapp'),
+        //
+        //   },
+        //   component: Layout,
+        //   children: [
+        //     {
+        //       name: 'WebApp',
+        //       path: '',
+        //       component: WebApp,
+        //     },
+        //   ],
+        // },
       ],
     },
     {
