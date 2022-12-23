@@ -1336,12 +1336,12 @@
     "create": "新建"
   },
   "env": {
-    "idc": "本地IDC",
+    "idc": "本地SDDC",
     "private": "私有云",
     "public": "公有云"
   },
   "cloud_env": {
-    "onpremise": "本地IDC",
+    "onpremise": "本地SDDC",
     "private": "私有云",
     "public": "公有云"
   },
@@ -2166,7 +2166,7 @@
     "scalinggroups.disable": "禁用后，伸缩组下的所有伸缩策略都无法执行，但是仍可创建伸缩策略。",
     "scalingpolicies.enable": "启用后，伸缩策略将会根据策略设置创建或删除虚拟机。",
     "scalingpolicies.disable": "禁用后，禁用状态的伸缩策略不生效。",
-    "serverskus.disable": "创建本地IDC或私有云虚拟机时无法选择禁用状态的套餐。",
+    "serverskus.disable": "创建本地SDDC或私有云虚拟机时无法选择禁用状态的套餐。",
     "hosts.disable": "禁用状态的宿主机不能用于创建虚拟机。",
     "physicalmachine.disable": "禁用状态的物理机不能用于创建裸金属。",
     "devtool_templates.disable": "禁用后，运维模板无法关联虚拟机使用。",
