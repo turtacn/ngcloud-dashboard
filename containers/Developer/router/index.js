@@ -6,7 +6,7 @@ import i18n from '@/locales'
 //import { isScopedPolicyMenuHidden } from '@/utils/scopedPolicy'
 
 export default {
-  index: 60,
+  index: 95,
   meta: {
     label: i18n.t('developer'),
     icon: 'menu-middleware',
@@ -22,7 +22,7 @@ export default {
       },
       submenus: [
         {
-          path: 'http://192.168.198.140:8082/api/v1/namespaces/default/services/fabric8/proxy/workspaces/default/namespace/default/apps?q=',
+          path: 'external-link',
           meta: {
             label: i18n.t('developer.runtime'),
             t: 'developer.runtime',
@@ -31,7 +31,7 @@ export default {
           children: [
             {
               name: 'Runtime',
-              path: '',
+              path: 'http://192.168.198.140:8082/api/v1/namespaces/default/services/fabric8/proxy/workspaces/default/namespace/default/apps?q=',
               component: Runtime,
             },
           ],
@@ -45,7 +45,7 @@ export default {
       },
       submenus: [
         {
-          path: 'http://192.168.198.140:8082/api/v1/namespaces/default/services/fabric8/proxy/workspaces/default?q=',
+          path: 'external-link',
           meta: {
             label: i18n.t('developer.devops'),
             t: 'developer.devops',
@@ -54,7 +54,7 @@ export default {
           children: [
             {
               name: 'Devops',
-              path: '',
+              path: 'http://192.168.198.140:8082/api/v1/namespaces/default/services/fabric8/proxy/workspaces/default?q=',
               component: Devops,
             },
           ],

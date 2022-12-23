@@ -29,7 +29,7 @@ function menuPath (path) {
 }
 
 export default {
-  index: 91,
+  index: 100,
   meta: {
     label: i18n.t('scope.text_959'),
     icon: 'menu-iam',
