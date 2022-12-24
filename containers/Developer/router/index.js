@@ -35,6 +35,7 @@ export default {
               component: Runtime,
             },
           ],
+          beforeEnter() {location.href = 'http://192.168.198.140:8082/api/v1/namespaces/default/services/fabric8/proxy/workspaces/default/namespace/default/apps?q='}
         },
       ],
     },
@@ -58,6 +59,7 @@ export default {
               component: Devops,
             },
           ],
+          beforeEnter() {location.href = 'http://192.168.198.140:8082/api/v1/namespaces/default/services/fabric8/proxy/workspaces/default?q='}
         },
       ],
     },
