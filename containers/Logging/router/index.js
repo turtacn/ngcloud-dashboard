@@ -19,7 +19,7 @@ export default {
   index: 66,
   meta: {
     label: i18n.t('logging.text_0'),
-    icon: 'menu-logging',
+    icon: 'menu-monitor',
   },
   menus: [
     {
