@@ -16,7 +16,7 @@ import i18n from '@/locales'
 //import { isScopedPolicyMenuHidden } from '@/utils/scopedPolicy'
 
 export default {
-  index: 65,
+  index: 66,
   meta: {
     label: i18n.t('logging.text_0'),
     icon: 'menu-logging',
