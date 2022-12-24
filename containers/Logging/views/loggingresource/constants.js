@@ -14,7 +14,7 @@ const DISK_USED_PERCENT = {
   metric: metricItems.used_percent.key,
 }
 
-// 内存使用率 基础监控
+// 内存使用率 基础日志
 const BASIC_MEM_USED_PERCENT = {
   name: 'mem',
   label: i18n.t('compute.text_518'),
@@ -25,7 +25,7 @@ const BASIC_MEM_USED_PERCENT = {
   metric: metricItems['vm_mem.used_percent'].key,
 }
 
-// 内存使用率 agent监控
+// 内存使用率 agent日志
 const MEM_USED_PERCENT = {
   name: 'mem',
   label: i18n.t('compute.text_518'),
@@ -342,7 +342,7 @@ export const AGENT_TEMPERATURE_MONITOR = [
   TEMPERATURE_VIRTUAL_INPUT,
 ]
 
-// OneCloud 虚拟机监控数据
+// OneCloud 虚拟机日志数据
 export const ONECLOUD_MONITOR = [
   {
     name: 'cpu',
@@ -397,7 +397,7 @@ export const ONECLOUD_MONITOR = [
   },
 ]
 
-// vmware 虚拟机监控数据
+// vmware 虚拟机日志数据
 export const VMWARE_MONITOR = [
   {
     name: 'cpu',
@@ -447,7 +447,7 @@ export const VMWARE_MONITOR = [
   },
 ]
 
-// 除了 kvm、vmware 虚拟机监控数据
+// 除了 kvm、vmware 虚拟机日志数据
 export const OTHER_MONITOR = [
   {
     name: 'cpu',
