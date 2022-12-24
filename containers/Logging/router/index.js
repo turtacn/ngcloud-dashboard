@@ -30,13 +30,6 @@ export default {
             label: i18n.t('common.server'),
           },
           component: Layout,
-          children: [
-            {
-              name: 'LoggingresourcesGuest',
-              path: '',
-              props: { res_type: 'guest' },
-              component: LoggingresourcesIndex,
-            },
           ],
         },
         {
@@ -45,14 +38,6 @@ export default {
             label: i18n.t('dictionary.host'),
           },
           component: Layout,
-          children: [
-            {
-              name: 'LoggingresourcesHost',
-              path: '',
-              props: { res_type: 'host' },
-              component: LoggingresourcesIndex,
-            },
-          ],
         },
       ],
     },
@@ -69,23 +54,6 @@ export default {
           },
           path: '/logging-dashboard',
           component: Layout,
-          children: [
-            {
-              name: 'LoggingDashboard',
-              path: '',
-              component: Dashboard,
-            },
-            {
-              name: 'LoggingDashboardChartCreate',
-              path: 'create',
-              component: LoggingDashboardChartCreate,
-            },
-            {
-              name: 'LoggingDashboardChartUpdate',
-              path: ':id/update',
-              component: LoggingDashboardChartCreate,
-            },
-          ],
         },
         {
           name: 'Query',
@@ -110,23 +78,6 @@ export default {
             t: 'dictionary.commonalert',
           },
           component: Layout,
-          children: [
-            {
-              name: 'CommonalertsIndex',
-              path: '',
-              component: CommonalertsIndex,
-            },
-            {
-              name: 'CommonalertCreate',
-              path: 'create',
-              component: commonalertsCreate,
-            },
-            {
-              name: 'CommonalertUpdate',
-              path: ':id/update',
-              component: commonalertsUpdate,
-            },
-          ],
         },
         {
           path: '/alertrecord',
@@ -134,13 +85,6 @@ export default {
             label: i18n.t('dictionary.alertrecord'),
           },
           component: Layout,
-          children: [
-            {
-              name: 'AlertrecordIndex',
-              path: '',
-              component: AlertrecordIndex,
-            },
-          ],
         },
         {
           path: '/alertresource',
@@ -149,13 +93,6 @@ export default {
 
           },
           component: Layout,
-          children: [
-            {
-              name: 'alertresourceIndex',
-              path: '',
-              component: AlertresourceIndex,
-            },
-          ],
         },
         {
           path: '/loggingresourcealerts',
@@ -164,13 +101,6 @@ export default {
             t: 'dictionary.loggingresourcealerts',
           },
           component: Layout,
-          children: [
-            {
-              name: 'AlertRecordShieldsIndex',
-              path: '',
-              component: AlertRecordShieldsIndex,
-            },
-          ],
         },
       ],
     },
