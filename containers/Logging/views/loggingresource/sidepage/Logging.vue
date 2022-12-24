@@ -34,8 +34,8 @@
 
 <script>
 import * as R from 'ramda'
-import BaseLogging from '@Compute/sections/logging/BaseLogging'
-import AgentLogging from '@Compute/sections/logging/AgentLogging.vue'
+import BaseLogging from '@Compute/sections/monitor/BaseMonitor'
+import AgentLogging from '@Compute/sections/monitor/AgentMonitor.vue'
 import InstallAgentFormVisible from '@Compute/views/vminstance/components/InstallAgentFormVisible'
 import { ONECLOUD_MONITOR, VMWARE_MONITOR, OTHER_MONITOR, AGENT_MONITOR, HOST_AGENT_MONITOR } from '../constants'
 import { HYPERVISORS_MAP } from '@/constants'

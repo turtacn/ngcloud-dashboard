@@ -70,10 +70,10 @@ import LoggingForms from '@Logging/sections/ExplorerForm'
 import LoggingLine from '@Logging/sections/LoggingLine'
 import { MONITOR_MAX_POINTERS } from '@Logging/constants'
 import CustomDate from '@/sections/CustomDate'
-import LoggingHeader from '@/sections/Logging/Header'
+import LoggingHeader from '@/sections/Monitor/Header'
 import { getRequestT, uuid } from '@/utils/utils'
 import { getSignature } from '@/utils/crypto'
-import { timeOpts } from '@/constants/logging'
+import { timeOpts } from '@/constants/monitor'
 
 export default {
   name: 'LoggingDashboardChartCreate',

@@ -26,7 +26,7 @@
 
 <script>
 import moment from 'moment'
-import { timeOpts } from '@/constants/logging'
+import { timeOpts } from '@/constants/monitor'
 import CustomDate from '@/sections/CustomDate'
 import DialogMixin from '@/mixins/dialog'
 import WindowsMixin from '@/mixins/windows'
