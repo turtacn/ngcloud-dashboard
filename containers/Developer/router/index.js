@@ -23,7 +23,6 @@ export default {
       submenus: [
         {
           path: 'external-link',
-          redirect: 'http://192.168.198.140:8082/api/v1/namespaces/default/services/fabric8/proxy/workspaces/default/namespace/default/apps?q=',
           meta: {
             label: i18n.t('developer.runtime'),
             t: 'developer.runtime',
@@ -38,7 +37,7 @@ export default {
           ],
           beforeEnter(to, from, next) {
             window.location.href = "http://192.168.198.140:8082/api/v1/namespaces/default/services/fabric8/proxy/workspaces/default/namespace/default/apps?q=";
-          }
+          },
         },
       ],
     },
@@ -50,7 +49,6 @@ export default {
       submenus: [
         {
           path: 'external-link',
-          redirect: 'http://192.168.198.140:8082/api/v1/namespaces/default/services/fabric8/proxy/workspaces/default?q=',
           meta: {
             label: i18n.t('developer.devops'),
             t: 'developer.devops',
@@ -65,7 +63,7 @@ export default {
           ],
           beforeEnter(to, from, next) {
             window.location.href = "http://192.168.198.140:8082/api/v1/namespaces/default/services/fabric8/proxy/workspaces/default?q=";
-          }
+          },
         },
       ],
     },
