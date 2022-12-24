@@ -22,7 +22,7 @@ export default {
       },
       submenus: [
         {
-          path: 'external-link',
+          path: '/runtime',
           meta: {
             label: i18n.t('developer.runtime'),
             t: 'developer.runtime',
@@ -48,7 +48,7 @@ export default {
       },
       submenus: [
         {
-          path: 'external-link',
+          path: '/devops',
           meta: {
             label: i18n.t('developer.devops'),
             t: 'developer.devops',
