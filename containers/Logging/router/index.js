@@ -16,7 +16,7 @@ export default {
       meta: {
         label: i18n.t('logging.text_18'),
       },
-      component: Overview,
+      component: Layout,
     },
     {
       meta: {
