@@ -2647,7 +2647,7 @@
     "ext_jenkins": "Jenkins",
     "ext_mysql": "MySQL",
     "ext_redis": "Redis",
-    "resourcealerts: "RabbitMQ",
+    "ext_rabbitmq": "RabbitMQ",
     "cdn": "内容分发网络",
     "cdn_domain": "CDN域名",
     "vpc_network": "VPC互联",
