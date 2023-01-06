@@ -260,9 +260,9 @@ export const STORAGE_TYPES = {
       sysMin: 10,
       sysMax: 2 * 1024,
     },
-    gpfs: {
-      label: 'GPFS',
-      key: 'gpfs',
+    ocfs2: {
+      label: 'OCFS2',
+      key: 'ocfs2',
       min: 1,
       max: 3 * 1024,
       sysMin: 10,
@@ -610,9 +610,9 @@ export const STORAGE_TYPES = {
       sysMin: 10,
       sysMax: 500,
     },
-    gpfs: {
-      label: 'GPFS',
-      key: 'gpfs',
+    ocfs2: {
+      label: 'OCFS2',
+      key: 'ocfs2',
       min: 1,
       max: 3 * 1024,
       sysMin: 10,

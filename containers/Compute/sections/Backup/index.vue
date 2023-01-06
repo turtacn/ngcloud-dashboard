@@ -47,7 +47,7 @@ export default {
   computed: {
     ...mapGetters(['isProjectMode']),
     switchDisabled () {
-      if (this.diskType === 'gpfs') return true
+      if (this.diskType === 'ocfs2') return true
       if (this.availableHostCount < 2) return true
       return false
     },

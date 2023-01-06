@@ -8,7 +8,7 @@ export const STORAGE_TYPES = {
   nas: 'NAS',
   vsan: 'vSAN',
   nfs: 'NFS',
-  gpfs: 'GPFS',
+  ocfs2: 'OCFS2',
   localstorage: i18n.t('storage.text_4'),
   ceph: i18n.t('storage.text_5'),
   iscsi: 'iscsi',

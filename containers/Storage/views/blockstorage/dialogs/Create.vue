@@ -84,7 +84,7 @@ export default {
   computed: {
     ...mapGetters(['isAdminMode', 'userInfo', 'l3PermissionEnable']),
     storageTypes () {
-      return this.params.storageTypes || ['rbd', 'nfs', 'gpfs']
+      return this.params.storageTypes || ['rbd', 'nfs', 'ocfs2']
     },
     getFieldValue () {
       return this.form.fc.getFieldValue
@@ -163,7 +163,7 @@ export default {
           const deleteKeys = {
             rbd: deleteRbdKeys,
             nfs: deleteNfsKeys,
-            gpfs: [...deleteRbdKeys, ...deleteNfsKeys],
+            ocfs2: [...deleteRbdKeys, ...deleteNfsKeys],
           }
           if (zone) {
             values.zone = zone.key

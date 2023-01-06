@@ -2907,7 +2907,7 @@
       "SAS": "High IO cloud hard drive",
       "SATA": "Common IO cloud hard Disk",
       "rbd": "Ceph RBD",
-      "gpfs": "GPFS",
+      "ocfs2": "OCFS2",
       "issci": "issci",
       "CLOUD_NORMAL": "common cloud Disk",
       "CLOUD_SSD": "SSD Cloud Disk"

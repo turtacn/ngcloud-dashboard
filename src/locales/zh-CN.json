@@ -2932,7 +2932,7 @@
       "SAS": "高IO云硬盘",
       "SATA": "普通IO云硬盘",
       "rbd": "Ceph RBD",
-      "gpfs": "GPFS",
+      "ocfs2": "OCFS2",
       "issci": "issci",
       "CLOUD_NORMAL": "普通云盘",
       "CLOUD_SSD": "SSD 云盘"

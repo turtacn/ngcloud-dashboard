@@ -630,9 +630,9 @@ export const STORAGE_TYPES = {
       sysMax: 500,
       unCreateCloud: true, // 不支持创建云硬盘
     },
-    gpfs: {
-      label: 'GPFS',
-      value: 'gpfs',
+    ocfs2: {
+      label: 'OCFS2',
+      value: 'ocfs2',
       min: 1,
       max: 3 * 1024,
       sysMin: 10,
@@ -667,9 +667,9 @@ export const STORAGE_TYPES = {
       sysMax: 500,
       unCreateCloud: true, // 不支持创建云硬盘
     },
-    gpfs: {
-      label: 'GPFS',
-      value: 'gpfs',
+    ocfs2: {
+      label: 'OCFS2',
+      value: 'ocfs2',
       min: 1,
       max: 3 * 1024,
       sysMin: 10,

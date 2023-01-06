@@ -40,7 +40,7 @@ describe('Backup switchDisabled', () => {
     })
   })
 
-  it('diskType=gpfs decide switchDisabled true', () => {
+  it('diskType=ocfs2 decide switchDisabled true', () => {
     const wrapper = shallowMount(Backup, {
       propsData: { decorator, diskType: 'gfs1' },
     })
